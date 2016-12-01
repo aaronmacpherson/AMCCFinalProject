@@ -116,7 +116,7 @@ namespace AMCCFinalProject
                     HideAllScenes();
                     actionScene.Show();
                 }
-                if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
                     helpScene.Show();

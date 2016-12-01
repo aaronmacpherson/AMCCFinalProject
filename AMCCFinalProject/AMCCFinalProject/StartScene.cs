@@ -34,9 +34,9 @@ namespace AMCCFinalProject
 
         private SpriteBatch spriteBatch;
         string[] menus = {  "Start Game",
+                            "How To Play",
                             "Help",
-                            "High Score",
-                            "Credit",
+                            "About",
                             "Quit" };
         public StartScene(Game game,
             SpriteBatch spriteBatch) : base(game)

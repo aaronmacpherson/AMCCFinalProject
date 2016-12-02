@@ -181,7 +181,6 @@ namespace AMCCFinalProject
                 playerFrameUpdate();
                 playerMovementUpdate();
                 delayCounter = 0;
-
             }
 
             base.Update(gameTime);

@@ -2,9 +2,9 @@
  * Final Project
  * Revision History
  *      Cynthia Cheng: 2016.12.1: Created & Coded
+ *      Cynthia Cheng: 2016.12.2: Coded
  *      
  */
-
 
 using System;
 using System.Collections.Generic;
@@ -21,17 +21,32 @@ namespace AMCCFinalProject
     {
         SpriteBatch spriteBatch;
         private Player player1;
+        private Enemy enemy1;
         private Vector2 initialPosition = new Vector2(0, 400);
-        private int initialDelay = 3;
+        private int initialPlayerDelay = 3;
+        TimeSpan enemySpawnTime = TimeSpan.FromSeconds(1.0f);
+        TimeSpan previousSpawnTime = TimeSpan.Zero;
+        Random random = new Random();
         private CollisionManager collisionManager; //Base Template only
         KeyboardState oldState; //Not currently used
+        private const float enemyAttackDistance = 20f;
+        private List<Enemy> enemies;
+        private int level;
+        Texture2D enemy1Texture;
 
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            Texture2D texture = game.Content.Load<Texture2D>("images/player1");
-            player1 = new Player(game, spriteBatch, texture, initialPosition, initialDelay);
+
+            Texture2D player1Texture = game.Content.Load<Texture2D>("images/player1");
+            player1 = new Player(game, spriteBatch, player1Texture, initialPosition, initialPlayerDelay);
             this.Components.Add(player1);
+
+
+
+            enemy1Texture = game.Content.Load<Texture2D>("images/enemy1");
+            enemy1 = new Enemy(game, spriteBatch, enemy1Texture, new Vector2(300, 400), initialPlayerDelay);
+            this.Components.Add(enemy1);
 
             collisionManager = new CollisionManager(game, player1);
             this.Components.Add(collisionManager);
@@ -44,14 +59,84 @@ namespace AMCCFinalProject
 
         public override void Update(GameTime gameTime)
         {
-            
+            addEnemy(gameTime);
+            updateEnemy();
+
             KeyboardState keyboardState = Keyboard.GetState();
 
             playerDirection(keyboardState);
             playerAction(keyboardState);
 
+
             oldState = keyboardState;
             base.Update(gameTime);
+        }
+
+        public void addEnemy(GameTime gametime)
+        {
+        }
+
+        public void updateEnemy()
+        {
+            enemyAIState();
+            enemyAIDirection();
+        }
+
+        public void enemyAIState()
+        {
+            float distanceFromPlayer1 = Vector2.Distance(enemy1.Position, player1.Position);
+            float enemyAttackThreshold = enemyAttackDistance;
+            if (distanceFromPlayer1 < enemyAttackThreshold)
+            {
+                enemy1.State = Enemy.EnemyState.Attack;
+            }
+            else if (enemy1.Health <= 0)
+            {
+                enemy1.State = Enemy.EnemyState.Death;
+            }
+            else
+            {
+                enemy1.State = Enemy.EnemyState.Move;
+            }
+        }
+
+        public void enemyAIDirection()
+        {
+            if (enemy1.State == Enemy.EnemyState.Move)
+            {
+                if (player1.Position.X > enemy1.Position.X && player1.Position.Y > enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.SouthEast;
+                }
+                else if (player1.Position.X > enemy1.Position.X && player1.Position.Y < enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.NorthEast;
+                }
+                else if (player1.Position.X < enemy1.Position.X && player1.Position.Y > enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.SouthWest;
+                }
+                else if (player1.Position.X < enemy1.Position.X && player1.Position.Y < enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.NorthWest;
+                }
+                else if (player1.Position.X >= enemy1.Position.X)
+                {
+                    enemy1.Movement = Enemy.Direction.East;
+                }
+                else if (player1.Position.X < enemy1.Position.X)
+                {
+                    enemy1.Movement = Enemy.Direction.West;
+                }
+                else if (player1.Position.Y >= enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.North;
+                }
+                else if (player1.Position.Y < enemy1.Position.Y)
+                {
+                    enemy1.Movement = Enemy.Direction.South;
+                }
+            }
         }
 
         public void playerDirection(KeyboardState keyboardState)

@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="ActionScene.cs" />
     <Compile Include="CollisonManager.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameScene.cs" />
     <Compile Include="HelpScene.cs" />

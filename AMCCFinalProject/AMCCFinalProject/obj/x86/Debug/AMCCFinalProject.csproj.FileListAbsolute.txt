@@ -27,3 +27,8 @@ E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\regularFont.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\helpImage.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy1.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy2.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy4.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player2.xnb

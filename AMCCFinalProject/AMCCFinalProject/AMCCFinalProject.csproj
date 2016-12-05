@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ActionScene.cs" />
+    <Compile Include="Boss.cs" />
     <Compile Include="CollisonManager.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared.cs" />
     <Compile Include="StartScene.cs" />
+    <Compile Include="StatusMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

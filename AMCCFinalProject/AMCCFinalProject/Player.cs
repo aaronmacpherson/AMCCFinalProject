@@ -21,11 +21,13 @@ namespace AMCCFinalProject
         private Texture2D texture;
         private Vector2 position;
         private Vector2 dimension;
-        private List<Rectangle> currentFrames, idleFrames, walkingFrames, jumpFrames, uppercutFrames;
+        private List<Rectangle> currentFrames, idleFrames, walkingFrames, jumpFrames, uppercutFrames, deathFrames;
         private int frameIndex = -1;
         private int delay;
         private int delayCounter;
         private int speed = 3;
+        private int health;
+        private int score;
 
         public enum CharacterState
         {
@@ -33,6 +35,7 @@ namespace AMCCFinalProject
             Walking,
             Jump,
             Uppercut,
+            Death,
         }
 
         private CharacterState state = CharacterState.Idle;
@@ -104,6 +107,45 @@ namespace AMCCFinalProject
             }
         }
 
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+
+            set
+            {
+                health = value;
+            }
+        }
+
+        public List<Rectangle> CurrentFrames
+        {
+            get
+            {
+                return currentFrames;
+            }
+
+            set
+            {
+                currentFrames = value;
+            }
+        }
+
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+
+            set
+            {
+                score = value;
+            }
+        }
+
         public Player(Game game,
             SpriteBatch spriteBatch,
             Texture2D texture,
@@ -115,6 +157,8 @@ namespace AMCCFinalProject
             this.position = position;
             this.delay = delay;
 
+            score = 0;
+            health = 100;
             dimension = new Vector2(64, 64);
 
             this.Enabled = true;
@@ -163,6 +207,16 @@ namespace AMCCFinalProject
                 Rectangle r = new Rectangle(x, y, (int)dimension.X,
                     (int)dimension.Y);
                 uppercutFrames.Add(r);
+            }
+
+            deathFrames = new List<Rectangle>();
+            for (int i = 0; i < 7; i++)
+            {
+                int x = i * (int)dimension.X;
+                int y = 4 * (int)dimension.Y;
+                Rectangle r = new Rectangle(x, y, (int)dimension.X,
+                    (int)dimension.Y);
+                deathFrames.Add(r);
             }
         }
 
@@ -221,6 +275,20 @@ namespace AMCCFinalProject
                 }
                 currentFrames = uppercutFrames;
             }
+            else if (state == CharacterState.Death)
+            {
+                if (currentFrames != deathFrames)
+                {
+                    frameIndex = 0;
+                    currentFrames = deathFrames;
+                }
+            }
+
+            if (state == CharacterState.Death && frameIndex == currentFrames.Count - 1)
+            {
+                frameIndex = currentFrames.Count - 1;
+                Enabled = false;
+            }
         }
 
         public void playerMovementUpdate()
@@ -273,6 +341,11 @@ namespace AMCCFinalProject
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public Rectangle getBounds()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, (int)dimension.X, (int)dimension.Y);
         }
     }
 }

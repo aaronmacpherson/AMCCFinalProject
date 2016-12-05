@@ -32,3 +32,37 @@ E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy4.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player2.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\hilightFont.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\regularFont.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy2.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy4.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\helpImage.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player2.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.exe
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.pdb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.exe
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.pdb

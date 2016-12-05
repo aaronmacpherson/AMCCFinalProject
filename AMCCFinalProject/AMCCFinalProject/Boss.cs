@@ -1,10 +1,4 @@
-﻿/* Enemy.cs
- * Final Project
- * Revision History
- *      Cynthia Cheng: 2016.12.2: Created & Coded
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +9,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace AMCCFinalProject
 {
-    public class Enemy : DrawableGameComponent
+    public class Boss : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
         private Texture2D texture;
         private Vector2 position;
         private Vector2 dimension;
-        private int enemyVersion;
+        private int bossVersion;
         private List<Rectangle> currentFrames, moveFrames, attackFrames, deathFrames;
         private int frameIndex = -1;
         private int delay;
@@ -33,16 +27,16 @@ namespace AMCCFinalProject
         private int scoreValue;
         private bool scoreAdded = false;
 
-        public enum EnemyState
+        public enum BossState
         {
             Move,
             Attack,
             Death,
         }
 
-        private EnemyState state = EnemyState.Move;
+        private BossState state = BossState.Move;
 
-        public EnemyState State
+        public BossState State
         {
             get
             {
@@ -187,21 +181,21 @@ namespace AMCCFinalProject
             }
         }
 
-        public Enemy(Game game,
+        public Boss(Game game,
             SpriteBatch spriteBatch,
             Texture2D texture,
             Vector2 position,
-            int delay, int enemyVersion) : base(game)
+            int delay, int bossVersion) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.texture = texture;
             this.position = position;
             this.delay = delay;
-            this.enemyVersion = enemyVersion;
+            this.bossVersion = bossVersion;
 
             dimension = new Vector2(64, 64);
             active = true;
-            health = 50;
+            health = 200;
 
             this.Enabled = true;
             this.Visible = true;
@@ -211,11 +205,11 @@ namespace AMCCFinalProject
 
         private void createFrames()
         {
-            if (enemyVersion == 1)
+            if (bossVersion == 1)
             {
-                speed = 2;
-                attackStrength = 10;
-                scoreValue = 100;
+                speed = 4;
+                attackStrength = 20;
+                scoreValue = 1000;
                 moveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -244,11 +238,11 @@ namespace AMCCFinalProject
                     deathFrames.Add(r);
                 }
             }
-            else if (enemyVersion == 2)
+            else if (bossVersion == 2)
             {
-                speed = 1;
-                attackStrength = 15;
-                scoreValue = 150;
+                speed = 3;
+                attackStrength = 25;
+                scoreValue = 1500;
                 moveFrames = new List<Rectangle>();
                 for (int i = 0; i < 4; i++)
                 {
@@ -276,39 +270,7 @@ namespace AMCCFinalProject
                         (int)dimension.Y);
                     deathFrames.Add(r);
                 }
-            }
-            else if (enemyVersion == 3)
-            {
-                speed = 3;
-                attackStrength = 5;
-                scoreValue = 200;
-                moveFrames = new List<Rectangle>();
-                for (int i = 0; i < 5; i++)
-                {
-                    int x = i * (int)dimension.X;
-                    int y = 0;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    moveFrames.Add(r);
-                }
-                attackFrames = new List<Rectangle>();
-                for (int i = 0; i < 5; i++)
-                {
-                    int x = i * (int)dimension.X;
-                    int y = (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    attackFrames.Add(r);
-                }
-                deathFrames = new List<Rectangle>();
-                for (int i = 0; i < 8; i++)
-                {
-                    int x = i * (int)dimension.X;
-                    int y = 2 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    deathFrames.Add(r);
-                }
+            
             }
 
         }
@@ -325,19 +287,19 @@ namespace AMCCFinalProject
             if (delayCounter > delay)
             {
                 frameIndex++;
-                enemyFrameUpdate();
-                enemyMovementUpdate();
+                bossFrameUpdate();
+                bossMovementUpdate();
                 delayCounter = 0;
             }
 
             base.Update(gameTime);
         }
 
-        public void enemyFrameUpdate()
+        public void bossFrameUpdate()
         {
-            if (enemyVersion == 1)
+            if (bossVersion == 1)
             {
-                if (state == EnemyState.Move)
+                if (state == BossState.Move)
                 {
                     if (frameIndex > 4)
                     {
@@ -345,7 +307,7 @@ namespace AMCCFinalProject
                     }
                     currentFrames = moveFrames;
                 }
-                else if (state == EnemyState.Attack)
+                else if (state == BossState.Attack)
                 {
                     if (frameIndex > 5)
                     {
@@ -353,7 +315,7 @@ namespace AMCCFinalProject
                     }
                     currentFrames = attackFrames;
                 }
-                else if (state == EnemyState.Death)
+                else if (state == BossState.Death)
                 {
                     if (frameIndex > 6)
                     {
@@ -362,9 +324,9 @@ namespace AMCCFinalProject
                     currentFrames = deathFrames;
                 }
             }
-            else if (enemyVersion == 2)
+            else if (bossVersion == 2)
             {
-                if (state == EnemyState.Move)
+                if (state == BossState.Move)
                 {
                     if (frameIndex > 3)
                     {
@@ -372,7 +334,7 @@ namespace AMCCFinalProject
                     }
                     currentFrames = moveFrames;
                 }
-                else if (state == EnemyState.Attack)
+                else if (state == BossState.Attack)
                 {
                     if (frameIndex > 3)
                     {
@@ -380,36 +342,9 @@ namespace AMCCFinalProject
                     }
                     currentFrames = attackFrames;
                 }
-                else if (state == EnemyState.Death)
+                else if (state == BossState.Death)
                 {
                     if (frameIndex > 6)
-                    {
-                        frameIndex = 0;
-                    }
-                    currentFrames = deathFrames;
-                }
-            }
-            else if (enemyVersion == 3)
-            {
-                if (state == EnemyState.Move)
-                {
-                    if (frameIndex > 4)
-                    {
-                        frameIndex = 0;
-                    }
-                    currentFrames = moveFrames;
-                }
-                else if (state == EnemyState.Attack)
-                {
-                    if (frameIndex > 4)
-                    {
-                        frameIndex = 0;
-                    }
-                    currentFrames = attackFrames;
-                }
-                else if (state == EnemyState.Death)
-                {
-                    if (frameIndex > 7)
                     {
                         frameIndex = 0;
                     }
@@ -418,7 +353,7 @@ namespace AMCCFinalProject
             }
         }
 
-        public void enemyMovementUpdate()
+        public void bossMovementUpdate()
         {
             if (movement == Direction.East)
             {
@@ -463,7 +398,7 @@ namespace AMCCFinalProject
                 position.Y += speed;
             }
 
-            if (state == EnemyState.Death && FrameIndex == currentFrames.Count-1)
+            if (state == BossState.Death && FrameIndex == currentFrames.Count - 1)
             {
                 Enabled = false;
                 Active = false;

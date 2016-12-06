@@ -92,6 +92,20 @@ namespace AMCCFinalProject
                 }
                 enemyCounter++;
             }
+            
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy.Position.Y < 325)
+                {
+                    enemy.Position = new Vector2(enemy.Position.X, 325);
+                }
+
+                if (enemy.Position.X < 0)
+                {
+                    enemy.Position = new Vector2(0, enemy.Position.Y);
+                }
+            }
+
 
             base.Update(gameTime);
         }

@@ -1,4 +1,4 @@
-﻿/* Player.cs
+/* Player.cs
  * Final Project
  * Revision History
  *      Cynthia Cheng: 2016.12.1: Created & Coded
@@ -21,7 +21,8 @@ namespace AMCCFinalProject
         private Texture2D texture;
         private Vector2 position;
         private Vector2 dimension;
-        private List<Rectangle> currentFrames, idleFrames, walkingFrames, jumpFrames, uppercutFrames, deathFrames;
+        private List<Rectangle> currentFrames, idleFrames, eastWalkingFrames, eastJumpFrames, eastUppercutFrames, 
+            westWalkingFrames, westJumpFrames, westUppercutFrames, walkingFrames, jumpFrames, uppercutFrames, deathFrames;
         private int frameIndex = -1;
         private int delay;
         private int delayCounter;
@@ -38,7 +39,7 @@ namespace AMCCFinalProject
             Death,
         }
 
-        private CharacterState state = CharacterState.Idle;
+        private CharacterState state = CharacterState.Walking;
 
         public CharacterState State
         {
@@ -158,7 +159,7 @@ namespace AMCCFinalProject
             this.delay = delay;
 
             score = 0;
-            health = 100;
+            health = 10000;
             dimension = new Vector2(64, 64);
 
             this.Enabled = true;
@@ -179,34 +180,64 @@ namespace AMCCFinalProject
                 idleFrames.Add(r);
             }
 
-            walkingFrames = new List<Rectangle>();
+            eastWalkingFrames = new List<Rectangle>();
             for (int i = 0; i < 8; i++)
             {
                 int x = i * (int)dimension.X;
                 int y = 1 * (int)dimension.Y;
                 Rectangle r = new Rectangle(x, y, (int)dimension.X,
                     (int)dimension.Y);
-                walkingFrames.Add(r);
+                eastWalkingFrames.Add(r);
             }
 
-            jumpFrames = new List<Rectangle>();
+            westWalkingFrames = new List<Rectangle>();
+            for (int i = 1; i < 9; i++)
+            {
+                int x = texture.Width - (i * (int)dimension.X);
+                int y = 17 * (int)dimension.Y;
+                Rectangle r = new Rectangle(x, y, (int)dimension.X,
+                    (int)dimension.Y);
+                westWalkingFrames.Add(r);
+            }
+
+            eastJumpFrames = new List<Rectangle>();
             for (int i = 0; i < 8; i++)
             {
                 int x = i * (int)dimension.X;
                 int y = 2 * (int)dimension.Y;
                 Rectangle r = new Rectangle(x, y, (int)dimension.X,
                     (int)dimension.Y);
-                jumpFrames.Add(r);
+                eastJumpFrames.Add(r);
             }
 
-            uppercutFrames = new List<Rectangle>();
+            westJumpFrames = new List<Rectangle>();
+            for (int i = 1; i < 9; i++)
+            {
+                int x = texture.Width - (i * (int)dimension.X);
+                int y = 18 * (int)dimension.Y;
+                Rectangle r = new Rectangle(x, y, (int)dimension.X,
+                    (int)dimension.Y);
+                westJumpFrames.Add(r);
+            }
+
+            eastUppercutFrames = new List<Rectangle>();
             for (int i = 0; i < 6; i++)
             {
                 int x = i * (int)dimension.X;
                 int y = 15 * (int)dimension.Y;
                 Rectangle r = new Rectangle(x, y, (int)dimension.X,
                     (int)dimension.Y);
-                uppercutFrames.Add(r);
+                eastUppercutFrames.Add(r);
+            }
+
+            westUppercutFrames = new List<Rectangle>();
+            for (int i = 1; i < 7; i++)
+            {
+                int x = texture.Width - (i * (int)dimension.X);
+                int y = 31 * (int)dimension.Y;
+                Rectangle r = new Rectangle(x, y, (int)dimension.X,
+                    (int)dimension.Y);
+                westUppercutFrames.Add(r);
             }
 
             deathFrames = new List<Rectangle>();
@@ -256,6 +287,14 @@ namespace AMCCFinalProject
                 {
                     frameIndex = 0;
                 }
+                if (movement != Direction.West && movement != Direction.NorthWest && movement != Direction.SouthWest)
+                {
+                    walkingFrames = eastWalkingFrames;
+                }
+                else
+                {
+                    walkingFrames = westWalkingFrames;
+                }
                 currentFrames = walkingFrames;
 
             }
@@ -265,6 +304,14 @@ namespace AMCCFinalProject
                 {
                     frameIndex = 0;
                 }
+                if (movement != Direction.West && movement != Direction.NorthWest && movement != Direction.SouthWest)
+                {
+                    jumpFrames = eastJumpFrames;
+                }
+                else
+                {
+                    jumpFrames = westJumpFrames;
+                }
                 currentFrames = jumpFrames;
             }
             else if (state == CharacterState.Uppercut)
@@ -272,6 +319,14 @@ namespace AMCCFinalProject
                 if (frameIndex > 5)
                 {
                     frameIndex = 0;
+                }
+                if (movement != Direction.West && movement != Direction.NorthWest && movement != Direction.SouthWest)
+                {
+                    uppercutFrames = eastUppercutFrames;
+                }
+                else
+                {
+                    uppercutFrames = westUppercutFrames;
                 }
                 currentFrames = uppercutFrames;
             }

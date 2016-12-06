@@ -1,8 +1,9 @@
 ﻿/* ActionScene.cs
  * Final Project
  * Revision History
- *      Cynthia Cheng: 2016.12.1: Created & Coded
- *      Cynthia Cheng: 2016.12.2: Coded
+ *      Cynthia Cheng:      2016.12.1: Created & Coded
+ *      Cynthia Cheng:      2016.12.2: Coded
+ *      Aaron MacPherson:   2016.12.6: Coded
  *      
  */
 
@@ -32,6 +33,7 @@ namespace AMCCFinalProject
         private TimeSpan previousSpawnTime = TimeSpan.Zero;
         private Random random;
         private Texture2D enemyTexture, enemy1Texture, enemy2Texture, enemy3Texture, enemy4Texture;
+        Vector2 stage;
 
         private int level;
 
@@ -59,6 +61,16 @@ namespace AMCCFinalProject
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
+            stage = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+            Texture2D levelTexture = game.Content.Load<Texture2D>("levels/level1");
+            Vector2 levelPosition1 = new Vector2(0, GraphicsDevice.Viewport.Height - 800);
+            Rectangle levelSourceRectangle = new Rectangle(0, 0, 1920, 800);
+
+            LevelBackground level1 = new LevelBackground(game, spriteBatch, levelTexture,
+                levelSourceRectangle, levelPosition1, new Vector2(2, 0));
+
+            this.Components.Add(level1);
 
             Texture2D player1Texture = game.Content.Load<Texture2D>("images/player1");
             player1 = new Player(game, spriteBatch, player1Texture, initialPosition, initialDelay);

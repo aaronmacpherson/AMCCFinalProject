@@ -1,7 +1,8 @@
 ﻿/* CollisonManager.cs
  * Final Project
  * Revision History
- *      Cynthia Cheng: 2016.12.01: Created & Coded
+ *      Cynthia Cheng:      2016.12.01: Created & Coded
+ *      Aaron MacPherson:   2016.12.06: Coded
  */
 
 using System;
@@ -39,6 +40,22 @@ namespace AMCCFinalProject
             
             Rectangle player1Rectangle = player1.getBounds();
             List<Rectangle> enemiesRectangle = new List<Rectangle>();
+
+            //upper wall
+            if (player1.Position.Y < 325)
+            {
+                player1.Position = new Vector2(player1.Position.X, 325);
+            }
+            //left wall
+            if (player1.Position.X < 0)
+            {
+                player1.Position = new Vector2(0, player1.Position.Y);
+            }
+            //bottom wall
+            //if (player1.Position.Y + player1Rectangle.Height > stage.Y)
+            //{
+            //    player1.Position = new Vector2(player1.Position.X, stage.Y - player1Rectangle.Height);
+            //}
 
             for (int i = 0; i < enemies.Count; i++)
             {

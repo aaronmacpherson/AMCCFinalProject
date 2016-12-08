@@ -3,9 +3,16 @@
  * Revision History
  *      Cynthia Cheng:      2016.12.01: Created & Coded
  *      Cynthia Cheng:      2016.12.02: Coded
+ *      Cynthia Cheng:      2016.12.04: Coded
  *      Aaron MacPherson:   2016.12.06: Coded
+ *      Cynthia Cheng:      2016.12.06: Coded
  *      Aaron MacPherson:   2016.12.07: Coded
+ *      Cynthia Cheng:      2016.12.07: Coded
  *      
+ *      
+ *      There is a boss.Defeated bool for when the boss is defeated
+ *      For the end of level/round score/save use this boss.Defeated == true && boss.Position.X > 800 (the boss has left the screen) before
+ *      loading the end of the level
  */
 
 using System;
@@ -27,11 +34,9 @@ namespace AMCCFinalProject
         SpriteBatch spriteBatch;
 
         private Player player1;
-        private Vector2 initialPosition = new Vector2(0, 400);
+        private Vector2 initialPosition = new Vector2(0, 380);
         private int initialDelay = 3;
         GameOverScene gameOverScene;
-
-
 
         private HealthItem healthItem;
         private List<HealthItem> healthItems;
@@ -51,11 +56,16 @@ namespace AMCCFinalProject
 
         private List<Enemy> enemies;
         private const float enemyAttackDistance = 20f;
-        private int maxEnemyCount; //adjust this based on loaded level
+        private const float bossAttackDistance = 30f;
+        private int maxEnemyCount = 40; //adjust this based on loaded level
         private TimeSpan enemySpawnTime = TimeSpan.FromSeconds(1.0f);
         private TimeSpan previousSpawnTime = TimeSpan.Zero;
         private Random random;
-        private Texture2D enemyTexture, enemy1Texture, enemy2Texture, enemy3Texture, enemy4Texture;
+        private Texture2D enemyTexture, enemy1Texture, enemy2Texture, enemy3Texture, enemy4Texture, boss1Texture;
+        private Boss boss;
+        private int bossVersion = 1;
+        private bool bossActivated = false;
+
         Vector2 stage;
 
         //private int level;
@@ -125,6 +135,9 @@ namespace AMCCFinalProject
             enemy3Texture = game.Content.Load<Texture2D>("images/enemy3");
             enemy4Texture = game.Content.Load<Texture2D>("images/enemy4");
 
+            boss1Texture = game.Content.Load<Texture2D>("images/boss1");
+            boss = new Boss(Game, spriteBatch, boss1Texture, new Vector2(800, 400), initialDelay, bossVersion);
+
             regularFont = game.Content.Load<SpriteFont>("fonts/regularFont");
             string statusMenuScore = "Player Health" + player1.Health + " Current Score " + player1.Score;
             statusMenu = new StatusMenu(game, spriteBatch, regularFont, Vector2.Zero, statusMenuScore, Color.Black);
@@ -135,7 +148,7 @@ namespace AMCCFinalProject
             SoundEffect playerDead = game.Content.Load<SoundEffect>("soundeffects/meow");
 
             collisionManager = new CollisionManager(game, player1, enemies, healthItems, punch, playerHit,
-                playerDead);
+                playerDead, boss);
             this.Components.Add(collisionManager);
 
             gameOverScene = new GameOverScene(game, spriteBatch);
@@ -209,26 +222,31 @@ namespace AMCCFinalProject
 
         public void addEnemy()
         {
-            int enemyVersion = random.Next(1, 4);
-            switch (enemyVersion)
+            int i = enemies.Count;
+            if (i <= maxEnemyCount)
             {
-                case 1:
-                    enemyTexture = enemy1Texture;
-                    break;
-                case 2:
-                    enemyTexture = enemy2Texture;
-                    break;
-                case 3:
-                    enemyTexture = enemy3Texture;
-                    break;
-                default:
-                    break;
+                int enemyVersion = random.Next(1, 4);
+                switch (enemyVersion)
+                {
+                    case 1:
+                        enemyTexture = enemy1Texture;
+                        break;
+                    case 2:
+                        enemyTexture = enemy2Texture;
+                        break;
+                    case 3:
+                        enemyTexture = enemy3Texture;
+                        break;
+                    default:
+                        break;
+                }
+                Enemy enemy = new Enemy(Game, spriteBatch, enemyTexture, new Vector2(800, 400), initialDelay, enemyVersion);
+                enemies.Add(enemy);
+                this.Components.Add(enemies[i]);
             }
-            Enemy enemy = new Enemy(Game, spriteBatch, enemyTexture, new Vector2(800, 400), initialDelay, enemyVersion);
-            enemies.Add(enemy);
-            int i = enemies.Count - 1;
-            this.Components.Add(enemies[i]);
+
         }
+    
 
         public void updateEnemy(GameTime gameTime)
         {
@@ -239,8 +257,13 @@ namespace AMCCFinalProject
                 addEnemy();
                 if (--maxEnemyCount <= 0)
                 {
-                    //start boss fight
+                    if (!bossActivated)
+                    {
+                        this.Components.Add(boss);
+                        bossActivated = true;
+                    }
                 }
+
             }
 
             for (int i = enemies.Count-1; i >= 0; i--)
@@ -252,10 +275,82 @@ namespace AMCCFinalProject
                     enemies.RemoveAt(i);
                 }
             }
-            
+
+            if (bossActivated)
+            {
+                bossAIState(boss, gameTime);
+                bossAIDirection(boss);
+            }
         }
 
-        public void enemyAIState(Enemy enemy)
+
+    public void bossAIState(Boss boss, GameTime gameTime)
+    {
+        float distanceFromPlayer1 = Vector2.Distance(boss.Position, player1.Position);
+        float enemyAttackThreshold = bossAttackDistance;
+        if (distanceFromPlayer1 < enemyAttackThreshold && boss.Active == true)
+        {
+            boss.State = Boss.BossState.Attack;
+        }
+        else if (boss.Health <= 0)
+        {
+            boss.State = Boss.BossState.Death;
+            boss.Movement = Boss.Direction.East;
+            boss.Speed = 40;
+            boss.Defeated = true;
+            if (!boss.ScoreAdded)
+            {
+                player1.Score += boss.ScoreValue;
+                boss.ScoreAdded = true;
+            }
+        }
+        else
+        {
+            boss.State = Boss.BossState.Move;
+            bossAIDirection(boss);
+        }
+    }
+
+    public void bossAIDirection(Boss boss)
+    {
+        if (boss.State == Boss.BossState.Move)
+        {
+            if (player1.Position.X > boss.Position.X - 20 && player1.Position.Y > boss.Position.Y)
+            {
+                boss.Movement = Boss.Direction.SouthEast;
+            }
+            else if (player1.Position.X > boss.Position.X - 20 && player1.Position.Y < boss.Position.Y)
+            {
+                boss.Movement = Boss.Direction.NorthEast;
+            }
+            else if (player1.Position.X < boss.Position.X - 20 && player1.Position.Y > boss.Position.Y)
+            {
+                boss.Movement = Boss.Direction.SouthWest;
+            }
+            else if (player1.Position.X < boss.Position.X - 20 && player1.Position.Y < boss.Position.Y)
+            {
+                boss.Movement = Boss.Direction.NorthWest;
+            }
+            else if (player1.Position.X >= boss.Position.X - 20)
+            {
+                boss.Movement = Boss.Direction.East;
+            }
+            else if (player1.Position.X < boss.Position.X - 20)
+            {
+                boss.Movement = Boss.Direction.West;
+            }
+            else if (player1.Position.Y >= boss.Position.Y - 20)
+            {
+                boss.Movement = Boss.Direction.North;
+            }
+            else if (player1.Position.Y < boss.Position.Y - 20)
+            {
+                boss.Movement = Boss.Direction.South;
+            }
+        }
+    }
+
+    public void enemyAIState(Enemy enemy)
         {
             float distanceFromPlayer1 = Vector2.Distance(enemy.Position, player1.Position);
             float enemyAttackThreshold = enemyAttackDistance;

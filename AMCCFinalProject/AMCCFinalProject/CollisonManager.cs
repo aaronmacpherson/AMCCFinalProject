@@ -2,8 +2,11 @@
  * Final Project
  * Revision History
  *      Cynthia Cheng:      2016.12.01: Created & Coded
+ *      Cynthia Cheng:      2016.12.04: Coded
  *      Aaron MacPherson:   2016.12.06: Coded
+ *      Cynthia Cheng:      2016.12.06: Coded
  *      Aaron MacPherson:   2016.12.07: Coded
+ *      Cynthia Cheng:      2016.12.07: Coded
  */
 
 using System;
@@ -26,13 +29,16 @@ namespace AMCCFinalProject
         private SoundEffect punch;
         private SoundEffect playerHit;
         private SoundEffect playerDead;
+        private Boss boss;
 
         public CollisionManager(Game game,
             Player player1,
             List<Enemy> enemies, 
             List<HealthItem> healthItems,
-            SoundEffect punch, SoundEffect playerHit, 
-            SoundEffect playerDead) : base(game)
+            SoundEffect punch,
+            SoundEffect playerHit, 
+            SoundEffect playerDead,
+            Boss boss) : base(game)
         {
             this.player1 = player1;
             this.enemies = enemies;
@@ -40,6 +46,7 @@ namespace AMCCFinalProject
             this.punch = punch;
             this.playerHit = playerHit;
             this.playerDead = playerDead;
+            this.boss = boss;
         }
 
         public override void Initialize()
@@ -110,13 +117,12 @@ namespace AMCCFinalProject
             {
                 if (player1Rectangle.Intersects(enemyRectangle))
                 {
-                    if (player1.State == Player.CharacterState.Uppercut && player1.FrameIndex >= player1.CurrentFrames.Count-1)
+                    if (player1.State == Player.CharacterState.Uppercut && player1.FrameIndex >= player1.CurrentFrames.Count - 1)
                     {
-                        punch.Play();
                         enemies[enemyCounter].Health -= player1.AttackStrength;
                     }
 
-                    if (enemies[enemyCounter].State == Enemy.EnemyState.Attack)
+                    if (enemies[enemyCounter].State == Enemy.EnemyState.Attack && enemies[enemyCounter].FrameIndex >= enemies[enemyCounter].CurrentFrames.Count - 2)
                     {
                         if (player1.Health > 0)
                         {
@@ -127,8 +133,59 @@ namespace AMCCFinalProject
                             player1.Health = 0;
                         }
                     }
+                }
+                enemyCounter++;
+            }
 
-                    if (player1.Health == 0)
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy.Position.Y < 325)
+                {
+                    enemy.Position = new Vector2(enemy.Position.X, 325);
+                }
+
+                if (enemy.Position.X < 0)
+                {
+                    enemy.Position = new Vector2(0, enemy.Position.Y);
+                }
+            }
+            Rectangle bossRectangle = boss.getBounds();
+            if (player1Rectangle.Intersects(bossRectangle))
+            {
+                if (player1.State == Player.CharacterState.Uppercut && player1.FrameIndex >= player1.CurrentFrames.Count - 1)
+                {
+                    boss.Health -= player1.AttackStrength;
+                }
+
+                if (boss.State == Boss.BossState.Attack && boss.FrameIndex >= boss.CurrentFrames.Count - 3)
+                {
+                    if (player1.Health > 0)
+                    {
+                        player1.Health -= boss.AttackStrength;
+                    }
+                    else
+                    {
+                        player1.Health = 0;
+                    }
+                }
+            }
+
+            if (boss.Position.Y < 325)
+            {
+                boss.Position = new Vector2(boss.Position.X, 325);
+            }
+
+            if (boss.Position.X < 0)
+            {
+                boss.Position = new Vector2(0, boss.Position.Y);
+            }
+
+            if (boss.Position.Y > Shared.stage.Y - boss.Dimension.Y)
+            {
+                boss.Position = new Vector2(boss.Position.X, Shared.stage.Y - boss.Dimension.Y);
+            }
+
+            if (player1.Health == 0)
                     {
                         player1.State = Player.CharacterState.Death;
                         player1.Movement = Player.Direction.Idle;
@@ -138,9 +195,6 @@ namespace AMCCFinalProject
                             Shared.gameOver = true;
                         }
                     }
-                }
-                enemyCounter++;
-            }
 
             base.Update(gameTime);
         }

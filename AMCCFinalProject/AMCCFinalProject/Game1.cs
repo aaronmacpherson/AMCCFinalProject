@@ -3,6 +3,7 @@
  * Revision History
  *      Cynthia Cheng:    2016.12.01: Created & Coded
  *      Aaron MacPherson: 2016.12.07: Coded
+ *      Cynthia Cheng:    2016.12.07: Coded
  *      
  */
 
@@ -24,6 +25,8 @@ namespace AMCCFinalProject
         private StartScene startScene;
         private ActionScene actionScene;
         private HelpScene helpScene;
+        private HowToPlayScene howToPlayScene;
+        private AboutScene aboutScene;
         private GameOverScene gameOverScene;
         private Song menuSong;
         private Song actionSong;
@@ -70,6 +73,12 @@ namespace AMCCFinalProject
 
             helpScene = new HelpScene(this, spriteBatch);
             this.Components.Add(helpScene);
+
+            howToPlayScene = new HowToPlayScene(this, spriteBatch);
+            this.Components.Add(howToPlayScene);
+
+            aboutScene = new AboutScene(this, spriteBatch);
+            this.Components.Add(aboutScene);
 
             gameOverScene = new GameOverScene(this, spriteBatch);
             this.Components.Add(gameOverScene);
@@ -135,11 +144,21 @@ namespace AMCCFinalProject
                     MediaPlayer.IsRepeating = true;
                     actionScene.Show();
                 }
+                if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                {
+                    HideAllScenes();
+                    howToPlayScene.Show();
+                }
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
                     helpScene.Enabled = true;
                     helpScene.Show();
+                }
+                if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
+                {
+                    HideAllScenes();
+                    aboutScene.Show();
                 }
 
                 // Exits/Closes program
@@ -150,7 +169,7 @@ namespace AMCCFinalProject
 
             }
 
-            if (actionScene.Enabled || helpScene.Enabled)
+            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {

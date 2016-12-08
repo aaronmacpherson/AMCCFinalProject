@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Year 2/Semester 3/PROG2370/finalProject/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/levels/level1.png</SourceFile>
-  <SourceTime>2016-12-07T12:55:48-05:00</SourceTime>
-  <DestFile>E:/Year 2/Semester 3/PROG2370/finalProject/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/levels/level1.xnb</DestFile>
-  <DestTime>2016-12-07T12:56:20-05:00</DestTime>
+  <SourceFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/levels/level1.png</SourceFile>
+  <SourceTime>2016-12-07T16:22:36-05:00</SourceTime>
+  <DestFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/levels/level1.xnb</DestFile>
+  <DestTime>2016-12-07T20:46:13.0351071-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

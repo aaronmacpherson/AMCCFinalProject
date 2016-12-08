@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/soundeffects/menu.wav</SourceFile>
-  <SourceTime>2016-12-07T16:22:36-05:00</SourceTime>
-  <DestFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/soundeffects/menu.xnb</DestFile>
-  <DestTime>2016-12-07T20:46:14.2366582-05:00</DestTime>
+  <SourceFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/soundeffects/menu.wav</SourceFile>
+  <SourceTime>2016-12-07T21:58:20-05:00</SourceTime>
+  <DestFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/soundeffects/menu.xnb</DestFile>
+  <DestTime>2016-12-08T08:21:34-05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

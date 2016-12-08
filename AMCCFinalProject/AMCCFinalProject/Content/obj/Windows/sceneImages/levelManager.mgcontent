@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/images/enemy1.png</SourceFile>
-  <SourceTime>2016-12-07T21:58:18-05:00</SourceTime>
-  <DestFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/images/enemy1.xnb</DestFile>
-  <DestTime>2016-12-08T08:21:24-05:00</DestTime>
+  <SourceFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/sceneImages/levelManager.png</SourceFile>
+  <SourceTime>2016-12-08T14:35:48-05:00</SourceTime>
+  <DestFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/sceneImages/levelManager.xnb</DestFile>
+  <DestTime>2016-12-08T15:02:40-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

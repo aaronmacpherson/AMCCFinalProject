@@ -50,6 +50,7 @@
     <Compile Include="HelpScene.cs" />
     <Compile Include="HowToPlayScene.cs" />
     <Compile Include="LevelBackground.cs" />
+    <Compile Include="LevelManagerScene.cs" />
     <Compile Include="MenuComponent.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace AMCCFinalProject
 {
+
     public class StartScene : GameScene
     {
         private MenuComponent myMenuComponent;
@@ -31,7 +32,8 @@ namespace AMCCFinalProject
                 myMenuComponent = value;
             }
         }
-
+        
+        private Texture2D startScreenTexture;
         private SpriteBatch spriteBatch;
         string[] menus = {  "Start Game",
                             "How To Play",
@@ -42,6 +44,7 @@ namespace AMCCFinalProject
             SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
+            startScreenTexture = game.Content.Load<Texture2D>("sceneImages/startScreen");
             myMenuComponent = new MenuComponent(game,
                 spriteBatch,
                 game.Content.Load<SpriteFont>("fonts/regularFont"),
@@ -62,6 +65,10 @@ namespace AMCCFinalProject
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(startScreenTexture, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

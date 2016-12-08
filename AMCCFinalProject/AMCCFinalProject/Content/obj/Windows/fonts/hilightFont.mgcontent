@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/fonts/hilightFont.spritefont</SourceFile>
-  <SourceTime>2016-12-07T16:22:36-05:00</SourceTime>
-  <DestFile>C:/Users/cynsl/Downloads/AMCCFinalProject-master/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/fonts/hilightFont.xnb</DestFile>
-  <DestTime>2016-12-07T20:46:12.3249405-05:00</DestTime>
+  <SourceFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/fonts/hilightFont.spritefont</SourceFile>
+  <SourceTime>2016-12-07T21:58:18-05:00</SourceTime>
+  <DestFile>E:/Level3/PROG2370 - Programming Object Oriented Game Programming/Final Project/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/fonts/hilightFont.xnb</DestFile>
+  <DestTime>2016-12-08T08:21:22-05:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

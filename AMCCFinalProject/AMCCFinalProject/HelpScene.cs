@@ -24,7 +24,7 @@ namespace AMCCFinalProject
         public HelpScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            helpTex = game.Content.Load<Texture2D>("images/helpImage");
+            helpTex = game.Content.Load<Texture2D>("sceneImages/helpImage");
         }
 
         public override void Initialize()

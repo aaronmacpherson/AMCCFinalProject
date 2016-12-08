@@ -1,13 +1,16 @@
 ﻿/* Game1.cs
  * Final Project
  * Revision History
- *      Cynthia Cheng: 2016.12.1: Created & Coded
+ *      Cynthia Cheng:    2016.12.01: Created & Coded
+ *      Aaron MacPherson: 2016.12.07: Coded
  *      
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace AMCCFinalProject
 {
@@ -21,6 +24,9 @@ namespace AMCCFinalProject
         private StartScene startScene;
         private ActionScene actionScene;
         private HelpScene helpScene;
+        private GameOverScene gameOverScene;
+        private Song menuSong;
+        private Song actionSong;
         
         public Game1()
         {
@@ -65,6 +71,16 @@ namespace AMCCFinalProject
             helpScene = new HelpScene(this, spriteBatch);
             this.Components.Add(helpScene);
 
+            gameOverScene = new GameOverScene(this, spriteBatch);
+            this.Components.Add(gameOverScene);
+
+            menuSong = this.Content.Load<Song>("music/menu");
+            actionSong = this.Content.Load<Song>("music/level1");
+
+
+            HideAllScenes();
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(menuSong);
             startScene.Show();
         }
 
@@ -103,7 +119,7 @@ namespace AMCCFinalProject
             //    Exit();
 
             // TODO: Add your update logic here
-            
+
             int selectedIndex = 0;
             KeyboardState ks = Keyboard.GetState();
 
@@ -114,11 +130,15 @@ namespace AMCCFinalProject
                 {
 
                     HideAllScenes();
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(actionSong);
+                    MediaPlayer.IsRepeating = true;
                     actionScene.Show();
                 }
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
+                    helpScene.Enabled = true;
                     helpScene.Show();
                 }
 
@@ -129,12 +149,15 @@ namespace AMCCFinalProject
                 }
 
             }
-            
+
             if (actionScene.Enabled || helpScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {
                     HideAllScenes();
+                    MediaPlayer.Stop();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(menuSong);
                     startScene.Show();
                 }
             }

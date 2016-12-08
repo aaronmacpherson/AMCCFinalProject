@@ -43,7 +43,9 @@
     <Compile Include="CollisonManager.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameOverScene.cs" />
     <Compile Include="GameScene.cs" />
+    <Compile Include="HealthItem.cs" />
     <Compile Include="HelpScene.cs" />
     <Compile Include="LevelBackground.cs" />
     <Compile Include="MenuComponent.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Shared.cs" />
     <Compile Include="StartScene.cs" />
     <Compile Include="StatusMenu.cs" />
+    <Compile Include="StrengthItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

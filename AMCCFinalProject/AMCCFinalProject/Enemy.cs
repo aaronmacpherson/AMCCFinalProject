@@ -1,4 +1,4 @@
-/* Enemy.cs
+﻿/* Enemy.cs
  * Final Project
  * Revision History
  *      Cynthia Cheng: 2016.12.2: Created & Coded
@@ -22,7 +22,7 @@ namespace AMCCFinalProject
         private Vector2 position;
         private Vector2 dimension;
         private int enemyVersion;
-        private List<Rectangle> currentFrames, moveFrames, attackFrames, deathFrames, eastMoveFrames, westMoveFrames, eastAttackFrames, westAttackFrames;
+        private List<Rectangle> currentFrames, moveFrames, attackFrames, deathFrames;
         private int frameIndex = -1;
         private int delay;
         private int delayCounter;
@@ -216,41 +216,23 @@ namespace AMCCFinalProject
                 speed = 2;
                 attackStrength = 10;
                 scoreValue = 100;
-                eastMoveFrames = new List<Rectangle>();
+                moveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = (int)dimension.Y;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastMoveFrames.Add(r);
+                    moveFrames.Add(r);
                 }
-                westMoveFrames = new List<Rectangle>();
-                for (int i = 1; i < 6; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 8 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westMoveFrames.Add(r);
-                }
-                eastAttackFrames = new List<Rectangle>();
+                attackFrames = new List<Rectangle>();
                 for (int i = 0; i < 6; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = 2 * (int)dimension.Y;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastAttackFrames.Add(r);
-                }
-                westAttackFrames = new List<Rectangle>();
-                for (int i = 1; i < 7; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 9 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westAttackFrames.Add(r);
+                    attackFrames.Add(r);
                 }
                 deathFrames = new List<Rectangle>();
                 for (int i = 0; i < 7; i++)
@@ -267,41 +249,23 @@ namespace AMCCFinalProject
                 speed = 1;
                 attackStrength = 15;
                 scoreValue = 150;
-                eastMoveFrames = new List<Rectangle>();
+                moveFrames = new List<Rectangle>();
                 for (int i = 0; i < 4; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = (int)dimension.Y;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastMoveFrames.Add(r);
+                    moveFrames.Add(r);
                 }
-                westMoveFrames = new List<Rectangle>();
-                for (int i = 1; i < 5; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 8 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westMoveFrames.Add(r);
-                }
-                eastAttackFrames = new List<Rectangle>();
+                attackFrames = new List<Rectangle>();
                 for (int i = 0; i < 4; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = 2 * (int)dimension.Y;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastAttackFrames.Add(r);
-                }
-                westAttackFrames = new List<Rectangle>();
-                for (int i = 1; i < 5; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 9 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westAttackFrames.Add(r);
+                    attackFrames.Add(r);
                 }
                 deathFrames = new List<Rectangle>();
                 for (int i = 0; i < 7; i++)
@@ -318,41 +282,23 @@ namespace AMCCFinalProject
                 speed = 3;
                 attackStrength = 5;
                 scoreValue = 200;
-                eastMoveFrames = new List<Rectangle>();
+                moveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = 0;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastMoveFrames.Add(r);
+                    moveFrames.Add(r);
                 }
-                westMoveFrames = new List<Rectangle>();
-                for (int i = 1; i < 6; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 4 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westMoveFrames.Add(r);
-                }
-                eastAttackFrames = new List<Rectangle>();
+                attackFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
                 {
                     int x = i * (int)dimension.X;
                     int y = (int)dimension.Y;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X,
                         (int)dimension.Y);
-                    eastAttackFrames.Add(r);
-                }
-                westAttackFrames = new List<Rectangle>();
-                for (int i = 1; i < 6; i++)
-                {
-                    int x = texture.Width - (i * (int)dimension.X);
-                    int y = 5 * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X,
-                        (int)dimension.Y);
-                    westAttackFrames.Add(r);
+                    attackFrames.Add(r);
                 }
                 deathFrames = new List<Rectangle>();
                 for (int i = 0; i < 8; i++)
@@ -397,14 +343,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        moveFrames = eastMoveFrames;
-                    }
-                    else
-                    {
-                        moveFrames = westMoveFrames;
-                    }
                     currentFrames = moveFrames;
                 }
                 else if (state == EnemyState.Attack)
@@ -413,16 +351,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        attackFrames = eastAttackFrames;
-                    }
-                    else
-                    {
-                        attackFrames = westAttackFrames;
-                    }
-
                     currentFrames = attackFrames;
                 }
                 else if (state == EnemyState.Death)
@@ -442,14 +370,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        moveFrames = eastMoveFrames;
-                    }
-                    else
-                    {
-                        moveFrames = westMoveFrames;
-                    }
                     currentFrames = moveFrames;
                 }
                 else if (state == EnemyState.Attack)
@@ -458,16 +378,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        attackFrames = eastAttackFrames;
-                    }
-                    else
-                    {
-                        attackFrames = westAttackFrames;
-                    }
-
                     currentFrames = attackFrames;
                 }
                 else if (state == EnemyState.Death)
@@ -487,16 +397,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        moveFrames = eastMoveFrames;
-                    }
-                    else
-                    {
-                        moveFrames = westMoveFrames;
-                    }
-
                     currentFrames = moveFrames;
                 }
                 else if (state == EnemyState.Attack)
@@ -505,16 +405,6 @@ namespace AMCCFinalProject
                     {
                         frameIndex = 0;
                     }
-
-                    if (movement == Direction.East || movement == Direction.NorthEast || movement == Direction.SouthEast)
-                    {
-                        attackFrames = eastAttackFrames;
-                    }
-                    else
-                    {
-                        attackFrames = westAttackFrames;
-                    }
-
                     currentFrames = attackFrames;
                 }
                 else if (state == EnemyState.Death)

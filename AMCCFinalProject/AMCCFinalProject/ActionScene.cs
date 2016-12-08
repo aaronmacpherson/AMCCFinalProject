@@ -1,9 +1,10 @@
 ﻿/* ActionScene.cs
  * Final Project
  * Revision History
- *      Cynthia Cheng:      2016.12.1: Created & Coded
- *      Cynthia Cheng:      2016.12.2: Coded
- *      Aaron MacPherson:   2016.12.6: Coded
+ *      Cynthia Cheng:      2016.12.01: Created & Coded
+ *      Cynthia Cheng:      2016.12.02: Coded
+ *      Aaron MacPherson:   2016.12.06: Coded
+ *      Aaron MacPherson:   2016.12.07: Coded
  *      
  */
 
@@ -15,6 +16,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+
 
 namespace AMCCFinalProject
 {
@@ -25,6 +29,25 @@ namespace AMCCFinalProject
         private Player player1;
         private Vector2 initialPosition = new Vector2(0, 400);
         private int initialDelay = 3;
+        GameOverScene gameOverScene;
+
+
+
+        private HealthItem healthItem;
+        private List<HealthItem> healthItems;
+        private const int MAX_HEALTH_ITEMS = 20;
+        private TimeSpan previousHealthSpawn = TimeSpan.Zero;
+        private TimeSpan healthItemSpawn = TimeSpan.FromSeconds(5f);
+        private Texture2D healthItemTexture;
+        private int healthCounter = 0;
+
+        private StrengthItem strengthItem;
+        private List<StrengthItem> strengthItems;
+        private const int MAX_STRENGTH_ITEMS = 10;
+        private TimeSpan previousStrengthSpawn = TimeSpan.Zero;
+        private TimeSpan strengthItemSpawn = TimeSpan.FromSeconds(10f);
+        private Texture2D strengthItemTexture;
+        private int strengthCounter = 0;
 
         private List<Enemy> enemies;
         private const float enemyAttackDistance = 20f;
@@ -35,7 +58,7 @@ namespace AMCCFinalProject
         private Texture2D enemyTexture, enemy1Texture, enemy2Texture, enemy3Texture, enemy4Texture;
         Vector2 stage;
 
-        private int level;
+        //private int level;
 
         private StatusMenu statusMenu;
         private SpriteFont regularFont;
@@ -68,9 +91,27 @@ namespace AMCCFinalProject
             Rectangle levelSourceRectangle = new Rectangle(0, 0, 1920, 800);
 
             LevelBackground level1 = new LevelBackground(game, spriteBatch, levelTexture,
-                levelSourceRectangle, levelPosition1, new Vector2(2, 0));
+            levelSourceRectangle, levelPosition1, new Vector2(2, 0));
 
             this.Components.Add(level1);
+
+            healthItemTexture = game.Content.Load<Texture2D>("items/lasagna1");
+            healthItems = new List<HealthItem>();
+
+            for (int i = 0; i < MAX_HEALTH_ITEMS; i++)
+            {
+                healthItem = new HealthItem(game, spriteBatch, healthItemTexture, new Vector2(800, 400), new Vector2(2, 0));
+                healthItems.Add(healthItem);
+            }
+
+            strengthItemTexture = game.Content.Load<Texture2D>("items/StrengthItem");
+            strengthItems = new List<StrengthItem>();
+
+            for (int i = 0; i < MAX_STRENGTH_ITEMS; i++)
+            {
+                strengthItem = new StrengthItem(game, spriteBatch, strengthItemTexture, new Vector2(800, 380), new Vector2(2, 0));
+                strengthItems.Add(strengthItem);
+            }
 
             Texture2D player1Texture = game.Content.Load<Texture2D>("images/player1");
             player1 = new Player(game, spriteBatch, player1Texture, initialPosition, initialDelay);
@@ -89,8 +130,17 @@ namespace AMCCFinalProject
             statusMenu = new StatusMenu(game, spriteBatch, regularFont, Vector2.Zero, statusMenuScore, Color.Black);
             this.Components.Add(statusMenu);
 
-            collisionManager = new CollisionManager(game, player1, enemies);
+            SoundEffect punch = game.Content.Load<SoundEffect>("soundeffects/punch");
+            SoundEffect playerHit = game.Content.Load<SoundEffect>("soundeffects/playerhit");
+            SoundEffect playerDead = game.Content.Load<SoundEffect>("soundeffects/meow");
+
+            collisionManager = new CollisionManager(game, player1, enemies, healthItems, punch, playerHit,
+                playerDead);
             this.Components.Add(collisionManager);
+
+            gameOverScene = new GameOverScene(game, spriteBatch);
+            game.Components.Add(gameOverScene);
+            gameOverScene.Hide();
         }
 
         public override void Initialize()
@@ -101,6 +151,8 @@ namespace AMCCFinalProject
         public override void Update(GameTime gameTime)
         {
             updateEnemy(gameTime);
+            addHealth(gameTime);
+            addStrength(gameTime);
             if (player1.Score > hiScore)
             {
                 hiScore = player1.Score;
@@ -114,7 +166,45 @@ namespace AMCCFinalProject
             playerAction(keyboardState);
 
             oldState = keyboardState;
+
+            if (Shared.gameOver == true)
+            {
+                this.Hide();
+                gameOverScene.Show();
+
+
+            }
+
             base.Update(gameTime);
+
+        }
+
+        public void addHealth(GameTime gameTime)
+        {
+            if (gameTime.TotalGameTime - previousHealthSpawn > healthItemSpawn)
+            {
+                previousHealthSpawn = gameTime.TotalGameTime;
+                healthItemSpawn = TimeSpan.FromSeconds(5f);
+                if (healthCounter < MAX_HEALTH_ITEMS)
+                {
+                    this.Components.Add(healthItems[healthCounter]);
+                    healthCounter++;
+                }
+            }
+        }
+
+        public void addStrength(GameTime gameTime)
+        {
+            if (gameTime.TotalGameTime - previousStrengthSpawn > strengthItemSpawn)
+            {
+                previousStrengthSpawn = gameTime.TotalGameTime;
+                strengthItemSpawn = TimeSpan.FromSeconds(10f);
+                if (strengthCounter < MAX_STRENGTH_ITEMS)
+                {
+                    this.Components.Add(strengthItems[strengthCounter]);
+                    strengthCounter++;
+                }
+            }
         }
 
         public void addEnemy()
@@ -137,7 +227,7 @@ namespace AMCCFinalProject
             Enemy enemy = new Enemy(Game, spriteBatch, enemyTexture, new Vector2(800, 400), initialDelay, enemyVersion);
             enemies.Add(enemy);
             int i = enemies.Count - 1;
-            Game.Components.Add(enemies[i]);
+            this.Components.Add(enemies[i]);
         }
 
         public void updateEnemy(GameTime gameTime)

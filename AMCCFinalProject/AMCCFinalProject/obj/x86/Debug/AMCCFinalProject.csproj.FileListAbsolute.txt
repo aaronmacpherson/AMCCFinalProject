@@ -66,3 +66,85 @@ C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProje
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.exe
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.pdb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.exe
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.pdb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\hilightFont.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\regularFont.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy1.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy2.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy4.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\helpImage.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player1.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player2.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\lasagna1.xnb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.exe
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.pdb
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\amacpherson-cc\Desktop\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.exe
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.pdb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\hilightFont.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\regularFont.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy1.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy2.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy4.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\helpImage.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player1.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\player2.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\lasagna1.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.exe
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\AMCCFinalProject.pdb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\MonoGame.Framework.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.XInput.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\levels\level1.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\StrengthItem.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.wma
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.wma
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\menu.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\meow.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\playerhit.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\powerup.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\punch.xnb
+E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\select.xnb

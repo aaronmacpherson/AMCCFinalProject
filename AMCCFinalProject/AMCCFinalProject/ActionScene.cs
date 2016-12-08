@@ -477,6 +477,59 @@ namespace AMCCFinalProject
             }
         }
 
+        public void resetGame()
+        {
+            player1.Position = initialPosition;
+            player1.Health = 500;
+            player1.Movement = Player.Direction.Idle;
+            player1.State = Player.CharacterState.Walking;
+
+            boss.Dispose();
+            boss = new Boss(Game, spriteBatch, boss1Texture, new Vector2(800, 400), initialDelay, bossVersion);
+
+
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Enabled = false;
+                enemy.Visible = false;
+                enemy.Dispose();
+            }
+            enemies.Clear();
+
+            foreach (HealthItem item in healthItems)
+            {
+                healthItem.Enabled = false;
+                healthItem.Visible = false;
+                healthItem.Dispose();
+            }
+            healthItems.Clear();
+            healthCounter = 0;
+
+            healthItems = new List<HealthItem>();
+
+            for (int i = 0; i < MAX_HEALTH_ITEMS; i++)
+            {
+                healthItem = new HealthItem(Game, spriteBatch, healthItemTexture, new Vector2(800, 400), new Vector2(2, 0));
+                healthItems.Add(healthItem);
+            }
+
+            foreach (StrengthItem item in strengthItems)
+            {
+                strengthItem.Dispose();
+
+            }
+            strengthCounter = 0;
+            strengthItems.Clear();
+            
+            strengthItems = new List<StrengthItem>();
+
+            for (int i = 0; i < MAX_STRENGTH_ITEMS; i++)
+            {
+                strengthItem = new StrengthItem(Game, spriteBatch, strengthItemTexture, new Vector2(800, 380), new Vector2(2, 0));
+                strengthItems.Add(strengthItem);
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

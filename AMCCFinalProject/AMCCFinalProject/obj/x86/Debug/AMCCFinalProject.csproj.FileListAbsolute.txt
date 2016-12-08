@@ -25,8 +25,6 @@ E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.pdb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\hilightFont.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\fonts\regularFont.xnb
-E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\helpImage.xnb
-E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\obj\x86\Debug\AMCCFinalProject.csprojResolveAssemblyReference.cache
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy1.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy2.xnb
 E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\enemy3.xnb
@@ -164,3 +162,23 @@ C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProje
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\about.xnb
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\boss1.xnb
 C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\howToPlay.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\boss1.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\lasagna1.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\StrengthItem.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\levels\level1.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.wma
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.wma
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\menu.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\meow.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\playerhit.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\powerup.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\punch.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\select.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\about.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\gameOver.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\helpImage.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\howToPlay.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\levelManager.xnb
+E:\Level3\PROG2370 - Programming Object Oriented Game Programming\Final Project\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\sceneImages\startScreen.xnb

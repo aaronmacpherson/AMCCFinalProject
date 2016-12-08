@@ -50,7 +50,7 @@ namespace AMCCFinalProject
             position1 -= scrollSpeed;
             if (position1.X < -levelTexture.Width)
             {
-                position1.X = position2.X + levelTexture.Width;
+                position1.X = position2.X + levelTexture.Width - 2;
             }
 
             position2 -= scrollSpeed;

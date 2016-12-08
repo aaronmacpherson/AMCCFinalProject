@@ -425,7 +425,7 @@ namespace AMCCFinalProject
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)position.X, (int)position.Y, (int)dimension.X, (int)dimension.Y);
+            return new Rectangle((int)position.X, (int)position.Y, 64, 64);
         }
     }
 }

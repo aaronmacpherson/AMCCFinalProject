@@ -54,5 +54,10 @@ namespace AMCCFinalProject
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        public Rectangle getBounds()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, (int)dimension.X, (int)dimension.Y);
+        }
     }
 }

@@ -26,26 +26,32 @@ namespace AMCCFinalProject
         private Player player1;
         private List<Enemy> enemies;
         private List<HealthItem> healthItems;
+        private List<StrengthItem> strengthItems;
         private SoundEffect punch;
         private SoundEffect playerHit;
         private SoundEffect playerDead;
+        private SoundEffect itemPickup;
         private Boss boss;
 
         public CollisionManager(Game game,
             Player player1,
             List<Enemy> enemies, 
             List<HealthItem> healthItems,
+            List<StrengthItem> strengthItems,
             SoundEffect punch,
             SoundEffect playerHit, 
             SoundEffect playerDead,
+            SoundEffect itemPickup,
             Boss boss) : base(game)
         {
             this.player1 = player1;
             this.enemies = enemies;
             this.healthItems = healthItems;
+            this.strengthItems = strengthItems;
             this.punch = punch;
             this.playerHit = playerHit;
             this.playerDead = playerDead;
+            this.itemPickup = itemPickup;
             this.boss = boss;
         }
 
@@ -59,6 +65,7 @@ namespace AMCCFinalProject
             
             Rectangle player1Rectangle = player1.getBounds();
             List<Rectangle> healthItemRectangles = new List<Rectangle>();
+            List<Rectangle> strengthItemRectangles = new List<Rectangle>();
             List<Rectangle> enemiesRectangle = new List<Rectangle>();
 
             //upper wall
@@ -66,15 +73,23 @@ namespace AMCCFinalProject
             {
                 player1.Position = new Vector2(player1.Position.X, 325);
             }
+
+            //bottom wall
+            if (player1.Position.Y > 410)
+            {
+                player1.Position = new Vector2(player1.Position.X, 410);
+            }
+
             //left wall
             if (player1.Position.X < 0)
             {
                 player1.Position = new Vector2(0, player1.Position.Y);
             }
-            //bottom wall
-            if (player1.Position.Y > 420)
+
+            //right wall
+            if (player1.Position.X > Shared.stage.X - 50)
             {
-                player1.Position = new Vector2(player1.Position.X, 420);
+                player1.Position = new Vector2(Shared.stage.X - 50, player1.Position.Y);
             }
 
             for (int i = 0; i < healthItems.Count; i++)
@@ -82,19 +97,29 @@ namespace AMCCFinalProject
                 healthItemRectangles.Add(healthItems[i].getBounds());
             }
 
+            for (int i = 0; i < strengthItems.Count; i++)
+            {
+                strengthItemRectangles.Add(strengthItems[i].getBounds());
+            }
+
+
+
             for (int i = 0; i < healthItemRectangles.Count; i++)
             {
-                if (player1Rectangle.Intersects(healthItemRectangles[i]))
+                if (player1Rectangle.Intersects(healthItemRectangles[i]) && healthItems[i].Enabled)
                 {
-                    if (player1.Health == 500)
+
+                    if (player1.Health >= 500)
                     {
-                        player1.Health = player1.Health;
+                        itemPickup.Play();
+                        player1.Health = 500;
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
-                        
+
                     }
                     if (player1.Health < 500)
                     {
+                        itemPickup.Play();
                         player1.Health += 20;
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
@@ -103,6 +128,17 @@ namespace AMCCFinalProject
                 else
                 {
                     player1.Health = player1.Health;
+                }
+            }
+               
+            for (int i = 0; i < strengthItemRectangles.Count; i++)
+            {
+                if (player1Rectangle.Intersects(strengthItemRectangles[i]) && strengthItems[i].Enabled)
+                {
+                    itemPickup.Play();
+                    player1.AttackStrength += 2;
+                    strengthItems[i].Enabled = false;
+                    strengthItems[i].Visible = false;
                 }
             }
 
@@ -119,6 +155,7 @@ namespace AMCCFinalProject
                 {
                     if (player1.State == Player.CharacterState.Uppercut && player1.FrameIndex >= player1.CurrentFrames.Count - 1)
                     {
+                        punch.Play();
                         enemies[enemyCounter].Health -= player1.AttackStrength;
                     }
 
@@ -126,6 +163,7 @@ namespace AMCCFinalProject
                     {
                         if (player1.Health > 0)
                         {
+                            playerHit.Play();
                             player1.Health -= enemies[enemyCounter].AttackStrength;
                         }
                         else
@@ -161,6 +199,7 @@ namespace AMCCFinalProject
                 {
                     if (player1.Health > 0)
                     {
+                        playerHit.Play();
                         player1.Health -= boss.AttackStrength;
                     }
                     else
@@ -192,6 +231,7 @@ namespace AMCCFinalProject
 
                         if (player1.FrameIndex >= player1.CurrentFrames.Count - 1)
                         {
+                            playerDead.Play();
                             Shared.gameOver = true;
                         }
                     }

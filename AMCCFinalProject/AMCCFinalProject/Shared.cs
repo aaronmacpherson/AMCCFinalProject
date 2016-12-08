@@ -16,7 +16,6 @@ namespace AMCCFinalProject
     public class Shared
     {
         public static Vector2 stage;
-        public static int itemCounter = 0;
         public static bool gameOver = false;
     }
 }

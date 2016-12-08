@@ -27,10 +27,24 @@ namespace AMCCFinalProject
         private HelpScene helpScene;
         private HowToPlayScene howToPlayScene;
         private AboutScene aboutScene;
-        private GameOverScene gameOverScene;
+        private static GameOverScene gameOverScene;
         private Song menuSong;
         private Song actionSong;
-        
+        KeyboardState oldState;
+
+        public static GameOverScene GameOverScene
+        {
+            get
+            {
+                return gameOverScene;
+            }
+
+            set
+            {
+                gameOverScene = value;
+            }
+        }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -131,11 +145,12 @@ namespace AMCCFinalProject
 
             int selectedIndex = 0;
             KeyboardState ks = Keyboard.GetState();
+            
 
             if (startScene.Enabled)
             {
                 selectedIndex = startScene.MyMenuComponent.SelectedIndex;
-                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter) && !oldState.IsKeyDown(Keys.Enter))
                 {
 
                     HideAllScenes();
@@ -152,7 +167,6 @@ namespace AMCCFinalProject
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
-                    helpScene.Enabled = true;
                     helpScene.Show();
                 }
                 if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
@@ -166,10 +180,40 @@ namespace AMCCFinalProject
                 {
                     Exit();
                 }
+                oldState = ks;
 
             }
 
-            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled)
+            if (gameOverScene.Enabled)
+            {
+                Shared.gameOver = false;
+                actionScene.Dispose();
+                actionScene = new ActionScene(this, spriteBatch);
+                this.Components.Add(actionScene);
+
+                selectedIndex = gameOverScene.MyMenuComponent.SelectedIndex;
+
+                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                {
+                    oldState = ks;
+                    HideAllScenes();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(menuSong);
+                    Shared.gameOver = false;
+                    startScene.Show();
+                }
+                if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                {
+                    HideAllScenes();
+                    actionScene.Show();
+                }
+                if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
+            }
+
+            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled || gameOverScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {
@@ -177,6 +221,7 @@ namespace AMCCFinalProject
                     MediaPlayer.Stop();
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Play(menuSong);
+                    Shared.gameOver = false;
                     startScene.Show();
                 }
             }

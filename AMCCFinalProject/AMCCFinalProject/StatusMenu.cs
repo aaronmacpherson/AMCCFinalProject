@@ -14,6 +14,7 @@ namespace AMCCFinalProject
         private SpriteBatch spriteBatch;
         private SpriteFont regularFont;
         private Vector2 position;
+        private Texture2D menuTexture;
         private string message;
         Color colour;
 
@@ -33,13 +34,15 @@ namespace AMCCFinalProject
         public StatusMenu(Game game, 
             SpriteBatch spriteBatch,
             SpriteFont regularFont,
-            Vector2 position,
+            Vector2 position
+            /*Texture2D menuTexture*/,
             string message,
             Color colour) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.regularFont = regularFont;
             this.position = position;
+            //this.menuTexture = menuTexture;
             this.message = message;
             this.colour = colour;
         }

@@ -245,6 +245,8 @@ namespace AMCCFinalProject
                 }
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
+                    Shared.level = 1;
+                    Shared.currentScore = 0;
                     HideAllScenes();
                     actionScene.Show();
                 }

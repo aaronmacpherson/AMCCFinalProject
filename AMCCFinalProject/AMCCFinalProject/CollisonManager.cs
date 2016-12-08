@@ -73,24 +73,22 @@ namespace AMCCFinalProject
             {
                 player1.Position = new Vector2(player1.Position.X, 325);
             }
-
-            //bottom wall
-            if (player1.Position.Y > 410)
-            {
-                player1.Position = new Vector2(player1.Position.X, 410);
-            }
-
             //left wall
             if (player1.Position.X < 0)
             {
                 player1.Position = new Vector2(0, player1.Position.Y);
             }
-
+            //bottom wall
+            if (player1.Position.Y > Shared.stage.Y - player1.Dimension.Y)
+            {
+                player1.Position = new Vector2(player1.Position.X, Shared.stage.Y - player1.Dimension.Y);
+            }
             //right wall
             if (player1.Position.X > Shared.stage.X - 50)
             {
                 player1.Position = new Vector2(Shared.stage.X - 50, player1.Position.Y);
             }
+
 
             for (int i = 0; i < healthItems.Count; i++)
             {
@@ -103,15 +101,12 @@ namespace AMCCFinalProject
             }
 
 
-
             for (int i = 0; i < healthItemRectangles.Count; i++)
             {
                 if (player1Rectangle.Intersects(healthItemRectangles[i]) && healthItems[i].Enabled)
                 {
-
                     if (player1.Health >= 500)
                     {
-                        itemPickup.Play();
                         player1.Health = 500;
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
@@ -119,10 +114,9 @@ namespace AMCCFinalProject
                     }
                     if (player1.Health < 500)
                     {
-                        itemPickup.Play();
-                        player1.Health += 20;
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
+                        player1.Health += 20;
                     }
                 }
                 else
@@ -130,7 +124,7 @@ namespace AMCCFinalProject
                     player1.Health = player1.Health;
                 }
             }
-               
+
             for (int i = 0; i < strengthItemRectangles.Count; i++)
             {
                 if (player1Rectangle.Intersects(strengthItemRectangles[i]) && strengthItems[i].Enabled)
@@ -142,8 +136,7 @@ namespace AMCCFinalProject
                 }
             }
 
-
-                for (int i = 0; i < enemies.Count; i++)
+            for (int i = 0; i < enemies.Count; i++)
             {
                 enemiesRectangle.Add(enemies[i].getBounds());
             }
@@ -177,9 +170,19 @@ namespace AMCCFinalProject
 
             foreach (Enemy enemy in enemies)
             {
-                if (enemy.Position.Y < 325)
+                if (enemy.EnemyVersion != 3)
                 {
-                    enemy.Position = new Vector2(enemy.Position.X, 325);
+                    if (enemy.Position.Y < 325)
+                    {
+                        enemy.Position = new Vector2(enemy.Position.X, 325);
+                    }
+                }
+                else
+                {
+                    if (enemy.Position.Y < 100)
+                    {
+                        enemy.Position = new Vector2(enemy.Position.X, 325);
+                    }
                 }
 
                 if (enemy.Position.X < 0)
@@ -209,9 +212,9 @@ namespace AMCCFinalProject
                 }
             }
 
-            if (boss.Position.Y < 325)
+            if (boss.Position.Y < 250)
             {
-                boss.Position = new Vector2(boss.Position.X, 325);
+                boss.Position = new Vector2(boss.Position.X, 250);
             }
 
             if (boss.Position.X < 0)
@@ -219,10 +222,12 @@ namespace AMCCFinalProject
                 boss.Position = new Vector2(0, boss.Position.Y);
             }
 
-            if (boss.Position.Y > Shared.stage.Y - boss.Dimension.Y)
+            if (boss.Position.Y > Shared.stage.Y - boss.Dimension.Y + 10)
             {
-                boss.Position = new Vector2(boss.Position.X, Shared.stage.Y - boss.Dimension.Y);
+                boss.Position = new Vector2(boss.Position.X, Shared.stage.Y - boss.Dimension.Y + 10);
             }
+
+
 
             if (player1.Health == 0)
                     {
@@ -231,6 +236,7 @@ namespace AMCCFinalProject
 
                         if (player1.FrameIndex >= player1.CurrentFrames.Count - 1)
                         {
+
                             playerDead.Play();
                             Shared.gameOver = true;
                         }

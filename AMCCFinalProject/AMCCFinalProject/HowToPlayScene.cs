@@ -24,7 +24,7 @@ namespace AMCCFinalProject
         public HowToPlayScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            howToPlayTex = game.Content.Load<Texture2D>("images/howToPlay");
+            howToPlayTex = game.Content.Load<Texture2D>("sceneImages/howToPlay");
         }
 
         public override void Initialize()

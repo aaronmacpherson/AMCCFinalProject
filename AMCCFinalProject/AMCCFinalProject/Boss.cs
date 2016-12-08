@@ -254,8 +254,8 @@ namespace AMCCFinalProject
         {
             if (bossVersion == 1)
             {
-                speed = 4;
-                attackStrength = 5;
+                speed = 2;
+                attackStrength = 10;
                 scoreValue = 1000;
                 eastMoveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
@@ -447,7 +447,7 @@ namespace AMCCFinalProject
             {
                 if (!defeated)
                 {
-                    speed = 4;
+                    speed = 2;
                 }
                 if (movement == Direction.East)
                 {

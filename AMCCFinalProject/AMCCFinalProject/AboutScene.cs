@@ -24,7 +24,7 @@ namespace AMCCFinalProject
         public AboutScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            aboutTex = game.Content.Load<Texture2D>("images/about");
+            aboutTex = game.Content.Load<Texture2D>("sceneImages/about");
         }
 
         public override void Initialize()

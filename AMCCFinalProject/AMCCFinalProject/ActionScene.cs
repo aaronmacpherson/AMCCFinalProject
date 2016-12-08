@@ -8,7 +8,6 @@
  *      Cynthia Cheng:      2016.12.06: Coded
  *      Aaron MacPherson:   2016.12.07: Coded
  *      Cynthia Cheng:      2016.12.07: Coded
- *      Aaron MacPherson:   2016.12.08: Coded
  *      
  *      
  *      There is a boss.Defeated bool for when the boss is defeated
@@ -36,13 +35,14 @@ namespace AMCCFinalProject
 
         private Player player1;
         private Vector2 initialPosition = new Vector2(0, 380);
+        Texture2D player1Texture;
         private int initialDelay = 3;
 
         private HealthItem healthItem;
         private List<HealthItem> healthItems;
         private const int MAX_HEALTH_ITEMS = 20;
         private TimeSpan previousHealthSpawn = TimeSpan.Zero;
-        private TimeSpan healthItemSpawn = TimeSpan.FromSeconds(20f);
+        private TimeSpan healthItemSpawn = TimeSpan.FromSeconds(5f);
         private Texture2D healthItemTexture;
         private int healthCounter = 0;
 
@@ -50,14 +50,14 @@ namespace AMCCFinalProject
         private List<StrengthItem> strengthItems;
         private const int MAX_STRENGTH_ITEMS = 10;
         private TimeSpan previousStrengthSpawn = TimeSpan.Zero;
-        private TimeSpan strengthItemSpawn = TimeSpan.FromSeconds(30f);
+        private TimeSpan strengthItemSpawn = TimeSpan.FromSeconds(10f);
         private Texture2D strengthItemTexture;
         private int strengthCounter = 0;
 
         private List<Enemy> enemies;
         private const float enemyAttackDistance = 20f;
         private const float bossAttackDistance = 30f;
-        private int maxEnemyCount = 50; //adjust this based on loaded level
+        private int maxEnemyCount; //adjust this based on loaded level
         private TimeSpan enemySpawnTime = TimeSpan.FromSeconds(1.0f);
         private TimeSpan previousSpawnTime = TimeSpan.Zero;
         private Random random;
@@ -65,18 +65,15 @@ namespace AMCCFinalProject
         private Boss boss;
         private int bossVersion = 1;
         private bool bossActivated = false;
-        Texture2D player1Texture;
 
-
-        //private int level;
+        Vector2 stage;
 
         private StatusMenu statusMenu;
         private SpriteFont regularFont;
-        private int hiScore;
 
         private CollisionManager collisionManager;
 
-        KeyboardState oldState; //Not currently used
+        KeyboardState oldState;
 
         public List<Enemy> Enemies
         {
@@ -94,25 +91,30 @@ namespace AMCCFinalProject
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            Shared.stage = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            stage = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             random = new Random();
             int randomY = 0;
 
             Texture2D levelTexture = game.Content.Load<Texture2D>("levels/level1");
-            Vector2 levelPosition = new Vector2(0, GraphicsDevice.Viewport.Height - 800);
+            Vector2 levelPosition1 = new Vector2(0, Shared.graphics.PreferredBackBufferHeight - 800);
             Rectangle levelSourceRectangle = new Rectangle(0, 0, 1920, 800);
-
-            LevelBackground level1 = new LevelBackground(game, spriteBatch, levelTexture,
-            levelSourceRectangle, levelPosition, new Vector2(2, 0));
-
+            LevelBackground level1 = new LevelBackground(game, 
+                spriteBatch, 
+                levelTexture,
+                levelSourceRectangle, 
+                levelPosition1, 
+                new Vector2(2, 0));
             this.Components.Add(level1);
+
+            maxEnemyCount = Shared.level * 10;
 
             healthItemTexture = game.Content.Load<Texture2D>("items/lasagna1");
             healthItems = new List<HealthItem>();
 
+            
             for (int i = 0; i < MAX_HEALTH_ITEMS; i++)
             {
-                randomY = random.Next(380, 410);
+                randomY = random.Next(380, 450);
                 healthItem = new HealthItem(game, spriteBatch, healthItemTexture, new Vector2(800, randomY), new Vector2(2, 0));
                 healthItems.Add(healthItem);
             }
@@ -122,7 +124,7 @@ namespace AMCCFinalProject
 
             for (int i = 0; i < MAX_STRENGTH_ITEMS; i++)
             {
-                randomY = random.Next(380, 410);
+                randomY = random.Next(380, 450);
                 strengthItem = new StrengthItem(game, spriteBatch, strengthItemTexture, new Vector2(800, randomY), new Vector2(2, 0));
                 strengthItems.Add(strengthItem);
             }
@@ -130,7 +132,7 @@ namespace AMCCFinalProject
             player1Texture = game.Content.Load<Texture2D>("images/player1");
             player1 = new Player(game, spriteBatch, player1Texture, initialPosition, initialDelay);
             this.Components.Add(player1);
-
+ 
             enemies = new List<Enemy>();
 
             enemy1Texture = game.Content.Load<Texture2D>("images/enemy1");
@@ -142,7 +144,7 @@ namespace AMCCFinalProject
             boss = new Boss(Game, spriteBatch, boss1Texture, new Vector2(800, 400), initialDelay, bossVersion);
 
             regularFont = game.Content.Load<SpriteFont>("fonts/regularFont");
-            string statusMenuScore = "Player Health" + player1.Health + " Current Score " + player1.Score;
+            string statusMenuScore = "Player Health" + player1.Health + " Current Score " + Shared.currentScore;
             statusMenu = new StatusMenu(game, spriteBatch, regularFont, Vector2.Zero, statusMenuScore, Color.Black);
             this.Components.Add(statusMenu);
 
@@ -154,7 +156,6 @@ namespace AMCCFinalProject
             collisionManager = new CollisionManager(game, player1, enemies, healthItems, strengthItems, punch, playerHit,
                 playerDead, itemPickup, boss);
             this.Components.Add(collisionManager);
-   
         }
 
         public override void Initialize()
@@ -164,37 +165,38 @@ namespace AMCCFinalProject
 
         public override void Update(GameTime gameTime)
         {
-            if (Shared.gameOver == false)
+            updateEnemy(gameTime);
+            addHealth(gameTime);
+            addStrength(gameTime);
+            if (Shared.currentScore > Shared.hiScore)
             {
-                updateEnemy(gameTime);
-                addHealth(gameTime);
-                addStrength(gameTime);
-                if (player1.Score > hiScore)
-                {
-                    hiScore = player1.Score;
-                }
-                string statusMenuScore = "Player Health: " + player1.Health + " Current Score: " + player1.Score + " HiScore: " + hiScore;
-                statusMenu.Message = statusMenuScore;
+                Shared.hiScore = Shared.currentScore;
+            }
+            string statusMenuScore = "Player Health: " + player1.Health + " Current Score: " + Shared.currentScore + " HiScore: " + Shared.hiScore + " Current Level: " + Shared.level;
+            statusMenu.Message = statusMenuScore;
 
-                KeyboardState keyboardState = Keyboard.GetState();
+            KeyboardState keyboardState = Keyboard.GetState();
 
-                playerDirection(keyboardState);
-                playerAction(keyboardState);
+            playerDirection(keyboardState);
+            playerAction(keyboardState);
 
-                oldState = keyboardState;
+            oldState = keyboardState;
+
+            if (player1.State == Player.CharacterState.Death && player1.FrameIndex >= player1.CurrentFrames.Count - 1)
+            {
+                Shared.currentScore = 0;
+                Shared.level = 1;
+                Shared.gameOver = true;
             }
 
-            if (Shared.gameOver == true)
+            if (boss.Defeated && boss.Position.X > Shared.stage.X)
             {
-                this.Hide();
-                Game1.GameOverScene.Show();
+                Shared.nextLevel = true;
             }
 
             base.Update(gameTime);
 
         }
-
-        
 
         public void addHealth(GameTime gameTime)
         {
@@ -227,24 +229,29 @@ namespace AMCCFinalProject
         public void addEnemy()
         {
             int i = enemies.Count;
+            
             if (i <= maxEnemyCount)
             {
+                int enemyPositionY = 0;
                 int enemyVersion = random.Next(1, 4);
                 switch (enemyVersion)
                 {
                     case 1:
                         enemyTexture = enemy1Texture;
+                        enemyPositionY = random.Next(300, 450);
                         break;
                     case 2:
                         enemyTexture = enemy2Texture;
+                        enemyPositionY = random.Next(300, 450);
                         break;
                     case 3:
                         enemyTexture = enemy3Texture;
+                        enemyPositionY = random.Next(100, 300);
                         break;
                     default:
                         break;
                 }
-                Enemy enemy = new Enemy(Game, spriteBatch, enemyTexture, new Vector2(800, 400), initialDelay, enemyVersion);
+                Enemy enemy = new Enemy(Game, spriteBatch, enemyTexture, new Vector2(800, enemyPositionY), initialDelay, enemyVersion);
                 enemies.Add(enemy);
                 this.Components.Add(enemies[i]);
             }
@@ -259,7 +266,7 @@ namespace AMCCFinalProject
                 previousSpawnTime = gameTime.TotalGameTime;
                 enemySpawnTime = TimeSpan.FromSeconds((float)random.Next(1, 3));
                 addEnemy();
-                if (--maxEnemyCount <= 0)
+                if (--maxEnemyCount <= 0 && enemies.Count == 0)
                 {
                     if (!bossActivated)
                     {
@@ -267,7 +274,6 @@ namespace AMCCFinalProject
                         bossActivated = true;
                     }
                 }
-
             }
 
             for (int i = enemies.Count-1; i >= 0; i--)
@@ -304,7 +310,7 @@ namespace AMCCFinalProject
             boss.Defeated = true;
             if (!boss.ScoreAdded)
             {
-                player1.Score += boss.ScoreValue;
+                Shared.currentScore += boss.ScoreValue;
                 boss.ScoreAdded = true;
             }
         }
@@ -368,7 +374,7 @@ namespace AMCCFinalProject
                 enemy.Movement = Enemy.Direction.Stop;
                 if (!enemy.ScoreAdded)
                 {
-                    player1.Score += enemy.ScoreValue;
+                    Shared.currentScore += enemy.ScoreValue;
                     enemy.ScoreAdded = true;
                 }
             }
@@ -461,20 +467,18 @@ namespace AMCCFinalProject
             if (player1.Health > 0)
             {
 
-            if (keyboardState.IsKeyDown(Keys.X))
-            {
-                player1.State = Player.CharacterState.Uppercut;
-            }
-            else if (keyboardState.IsKeyDown(Keys.Z))
-            {
-                player1.State = Player.CharacterState.Jump;
-            }
-            else
-            {
-                player1.State = Player.CharacterState.Walking;
-            }
-
-
+                if (keyboardState.IsKeyDown(Keys.X))
+                {
+                    player1.State = Player.CharacterState.Uppercut;
+                }
+                else if (keyboardState.IsKeyDown(Keys.Z))
+                {
+                    player1.State = Player.CharacterState.Jump;
+                }
+                else
+                {
+                    player1.State = Player.CharacterState.Walking;
+                }
             }
         }
 

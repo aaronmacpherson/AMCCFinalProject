@@ -190,6 +190,19 @@ namespace AMCCFinalProject
             }
         }
 
+        public int EnemyVersion
+        {
+            get
+            {
+                return enemyVersion;
+            }
+
+            set
+            {
+                enemyVersion = value;
+            }
+        }
+
         public Enemy(Game game,
             SpriteBatch spriteBatch,
             Texture2D texture,

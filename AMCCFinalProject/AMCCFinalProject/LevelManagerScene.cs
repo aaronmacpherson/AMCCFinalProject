@@ -9,39 +9,33 @@ using Microsoft.Xna.Framework.Input;
 
 namespace AMCCFinalProject
 {
-    public class StatusMenu : DrawableGameComponent
+    public class LevelManagerScene : GameScene
     {
+        private MenuComponent myMenuComponent;
         private SpriteBatch spriteBatch;
-        private SpriteFont regularFont;
-        private Vector2 position;
-        private string message;
-        Color colour;
+        private Texture2D levelManagerTexture;
+        string[] menus = { "Next Level", "Main Menu", "Reset", "Quit" };
 
-        public string Message
+        public MenuComponent MyMenuComponent
         {
             get
             {
-                return message;
+                return myMenuComponent;
             }
 
             set
             {
-                message = value;
+                myMenuComponent = value;
             }
         }
 
-        public StatusMenu(Game game, 
-            SpriteBatch spriteBatch,
-            SpriteFont regularFont,
-            Vector2 position,
-            string message,
-            Color colour) : base(game)
+        public LevelManagerScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            this.regularFont = regularFont;
-            this.position = position;
-            this.message = message;
-            this.colour = colour;
+            levelManagerTexture = game.Content.Load<Texture2D>("sceneImages/levelManager");
+            myMenuComponent = new MenuComponent(game, spriteBatch, game.Content.Load<SpriteFont>("fonts/regularFont"),
+                game.Content.Load<SpriteFont>("fonts/hilightFont"), menus);
+            this.Components.Add(myMenuComponent);
         }
 
         public override void Initialize()
@@ -57,7 +51,7 @@ namespace AMCCFinalProject
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(regularFont, message, position, colour);
+            spriteBatch.Draw(levelManagerTexture, Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

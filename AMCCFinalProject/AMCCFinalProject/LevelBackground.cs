@@ -48,15 +48,15 @@ namespace AMCCFinalProject
         public override void Update(GameTime gameTime)
         {
             position1 -= scrollSpeed;
-            if (position1.X < -levelTexture.Width)
+            if (position1.X < -sourceRectangle.Width)
             {
-                position1.X = position2.X + levelTexture.Width - 2;
+                position1.X = position2.X + levelTexture.Width-2;
             }
 
             position2 -= scrollSpeed;
             if (position2.X < -levelTexture.Width)
             {
-                position2.X = position1.X + levelTexture.Width;
+                position2.X = position1.X + sourceRectangle.Width;
             }
 
 

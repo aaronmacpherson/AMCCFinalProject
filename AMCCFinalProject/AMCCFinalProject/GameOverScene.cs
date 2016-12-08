@@ -13,7 +13,8 @@ namespace AMCCFinalProject
     {
         private MenuComponent myMenuComponent;
         private SpriteBatch spriteBatch;
-        string[] menus = { "Main Menu", "Reset", "Quit" };
+        private Texture2D gameOverTexture;
+        string[] menus = { "Main Menu" , "Reset", "Quit" };
 
         public MenuComponent MyMenuComponent
         {
@@ -31,6 +32,7 @@ namespace AMCCFinalProject
         public GameOverScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
             this.spriteBatch = spriteBatch;
+            gameOverTexture = game.Content.Load<Texture2D>("sceneImages/gameOver");
             myMenuComponent = new MenuComponent(game, spriteBatch, game.Content.Load<SpriteFont>("fonts/regularFont"),
                 game.Content.Load<SpriteFont>("fonts/hilightFont"), menus);
             this.Components.Add(myMenuComponent);
@@ -48,7 +50,10 @@ namespace AMCCFinalProject
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(gameOverTexture, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

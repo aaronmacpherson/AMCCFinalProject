@@ -167,6 +167,19 @@ namespace AMCCFinalProject
             }
         }
 
+        public Vector2 Dimension
+        {
+            get
+            {
+                return dimension;
+            }
+
+            set
+            {
+                dimension = value;
+            }
+        }
+
         public Player(Game game,
             SpriteBatch spriteBatch,
             Texture2D texture,
@@ -425,7 +438,7 @@ namespace AMCCFinalProject
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)position.X, (int)position.Y, 64, 64);
+            return new Rectangle((int)position.X, (int)position.Y, (int)dimension.X, (int)dimension.Y);
         }
     }
 }

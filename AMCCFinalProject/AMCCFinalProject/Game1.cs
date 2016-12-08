@@ -20,30 +20,18 @@ namespace AMCCFinalProject
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private StartScene startScene;
         private ActionScene actionScene;
         private HelpScene helpScene;
         private HowToPlayScene howToPlayScene;
         private AboutScene aboutScene;
-        private static GameOverScene gameOverScene;
+        private GameOverScene gameOverScene;
+        private LevelManagerScene levelManagerScene;
         private Song menuSong;
         private Song actionSong;
-        KeyboardState oldState;
-
-        public static GameOverScene GameOverScene
-        {
-            get
-            {
-                return gameOverScene;
-            }
-
-            set
-            {
-                gameOverScene = value;
-            }
-        }
+        private KeyboardState oldState;
 
         public Game1()
         {
@@ -64,6 +52,7 @@ namespace AMCCFinalProject
 
             Shared.stage = new Vector2(graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight);
+            Shared.graphics = graphics;
 
             base.Initialize();
         }
@@ -96,6 +85,9 @@ namespace AMCCFinalProject
 
             gameOverScene = new GameOverScene(this, spriteBatch);
             this.Components.Add(gameOverScene);
+
+            levelManagerScene = new LevelManagerScene(this, spriteBatch);
+            this.Components.Add(levelManagerScene);
 
             menuSong = this.Content.Load<Song>("music/menu");
             actionSong = this.Content.Load<Song>("music/level1");
@@ -145,14 +137,12 @@ namespace AMCCFinalProject
 
             int selectedIndex = 0;
             KeyboardState ks = Keyboard.GetState();
-            
 
             if (startScene.Enabled)
             {
                 selectedIndex = startScene.MyMenuComponent.SelectedIndex;
                 if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter) && !oldState.IsKeyDown(Keys.Enter))
                 {
-
                     HideAllScenes();
                     MediaPlayer.Stop();
                     MediaPlayer.Play(actionSong);
@@ -167,6 +157,7 @@ namespace AMCCFinalProject
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
+                    helpScene.Enabled = true;
                     helpScene.Show();
                 }
                 if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
@@ -180,8 +171,16 @@ namespace AMCCFinalProject
                 {
                     Exit();
                 }
+
                 oldState = ks;
 
+            }
+
+
+            if (Shared.gameOver == true)
+            {
+                HideAllScenes();
+                gameOverScene.Show();
             }
 
             if (gameOverScene.Enabled)
@@ -192,7 +191,6 @@ namespace AMCCFinalProject
                 this.Components.Add(actionScene);
 
                 selectedIndex = gameOverScene.MyMenuComponent.SelectedIndex;
-
                 if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
                 {
                     oldState = ks;
@@ -213,7 +211,50 @@ namespace AMCCFinalProject
                 }
             }
 
-            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled || gameOverScene.Enabled)
+
+            if (Shared.nextLevel == true)
+            {
+                HideAllScenes();
+                levelManagerScene.Show();
+            }
+
+
+            if (levelManagerScene.Enabled)
+            {
+                Shared.gameOver = false;
+                Shared.nextLevel = false;
+                actionScene.Dispose();
+                actionScene = new ActionScene(this, spriteBatch);
+                this.Components.Add(actionScene);
+
+                selectedIndex = levelManagerScene.MyMenuComponent.SelectedIndex;
+                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                {
+                    Shared.level++;
+                    oldState = ks;
+                    HideAllScenes();
+                    actionScene.Show();
+                }
+                if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                {
+                    Shared.level = 0;
+                    Shared.currentScore = 0;
+                    oldState = ks;
+                    HideAllScenes();
+                    startScene.Show();
+                }
+                if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
+                {
+                    HideAllScenes();
+                    actionScene.Show();
+                }
+                if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
+            }
+
+            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {

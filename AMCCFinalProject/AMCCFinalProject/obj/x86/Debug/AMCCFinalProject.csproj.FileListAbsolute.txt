@@ -148,3 +148,19 @@ E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProj
 E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\powerup.xnb
 E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\punch.xnb
 E:\Year 2\Semester 3\PROG2370\finalProject\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\select.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\lasagna1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\items\StrengthItem.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\levels\level1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.wma
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\level1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.wma
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\music\menu.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\menu.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\meow.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\playerhit.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\powerup.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\punch.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\soundeffects\select.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\about.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\boss1.xnb
+C:\Users\cynsl\Downloads\AMCCFinalProject-master\AMCCFinalProject\AMCCFinalProject\bin\Windows\x86\Debug\Content\images\howToPlay.xnb

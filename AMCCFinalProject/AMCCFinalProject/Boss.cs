@@ -242,7 +242,7 @@ namespace AMCCFinalProject
 
             dimension = new Vector2(102, 95);
             active = true;
-            health = 200;
+            health = 100 + (Shared.level * 100);
 
             this.Enabled = true;
             this.Visible = true;

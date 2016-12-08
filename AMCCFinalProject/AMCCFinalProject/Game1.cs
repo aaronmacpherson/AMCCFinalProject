@@ -185,6 +185,8 @@ namespace AMCCFinalProject
 
             if (gameOverScene.Enabled)
             {
+                Shared.level = 1;
+                Shared.currentScore = 0;
                 Shared.gameOver = false;
                 actionScene.Dispose();
                 actionScene = new ActionScene(this, spriteBatch);

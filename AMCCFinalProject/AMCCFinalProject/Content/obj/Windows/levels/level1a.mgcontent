@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>F:/AMCCFinalProject/AMCCFinalProject/Content/items/StrengthItem.png</SourceFile>
-  <SourceTime>2016-12-08T16:11:48-05:00</SourceTime>
-  <DestFile>F:/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/items/StrengthItem.xnb</DestFile>
-  <DestTime>2016-12-12T20:09:26-05:00</DestTime>
+  <SourceFile>F:/AMCCFinalProject/AMCCFinalProject/Content/levels/level1a.png</SourceFile>
+  <SourceTime>2016-12-08T16:10:38-05:00</SourceTime>
+  <DestFile>F:/AMCCFinalProject/AMCCFinalProject/Content/bin/Windows/levels/level1a.xnb</DestFile>
+  <DestTime>2016-12-12T20:09:44-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

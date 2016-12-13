@@ -8,11 +8,9 @@
  *      Cynthia Cheng:      2016.12.06: Coded
  *      Aaron MacPherson:   2016.12.07: Coded
  *      Cynthia Cheng:      2016.12.07: Coded
+ *      Aaron MacPherson:   2016.12.08: Coded
+ *      Aaron MacPherson:   2016.12.09: Coded
  *      
- *      
- *      There is a boss.Defeated bool for when the boss is defeated
- *      For the end of level/round score/save use this boss.Defeated == true && boss.Position.X > 800 (the boss has left the screen) before
- *      loading the end of the level
  */
 
 using System;
@@ -42,7 +40,7 @@ namespace AMCCFinalProject
         private List<HealthItem> healthItems;
         private const int MAX_HEALTH_ITEMS = 20;
         private TimeSpan previousHealthSpawn = TimeSpan.Zero;
-        private TimeSpan healthItemSpawn = TimeSpan.FromSeconds(5f);
+        private TimeSpan healthItemSpawn = TimeSpan.FromSeconds(20f);
         private Texture2D healthItemTexture;
         private int healthCounter = 0;
 
@@ -50,7 +48,7 @@ namespace AMCCFinalProject
         private List<StrengthItem> strengthItems;
         private const int MAX_STRENGTH_ITEMS = 10;
         private TimeSpan previousStrengthSpawn = TimeSpan.Zero;
-        private TimeSpan strengthItemSpawn = TimeSpan.FromSeconds(10f);
+        private TimeSpan strengthItemSpawn = TimeSpan.FromSeconds(30f);
         private Texture2D strengthItemTexture;
         private int strengthCounter = 0;
 
@@ -69,7 +67,11 @@ namespace AMCCFinalProject
         Vector2 stage;
 
         private StatusMenu statusMenu;
+        private StatusMenu scoreMenu;
+        Vector2 scorePosition;
         private SpriteFont regularFont;
+        LevelBackground level1;
+        //Song bossTheme;
 
         private CollisionManager collisionManager;
 
@@ -95,10 +97,10 @@ namespace AMCCFinalProject
             random = new Random();
             int randomY = 0;
 
-            Texture2D levelTexture = game.Content.Load<Texture2D>("levels/level1");
-            Vector2 levelPosition1 = new Vector2(0, Shared.graphics.PreferredBackBufferHeight - 800);
-            Rectangle levelSourceRectangle = new Rectangle(0, 0, 1920, 800);
-            LevelBackground level1 = new LevelBackground(game, 
+            Texture2D levelTexture = game.Content.Load<Texture2D>("levels/level1a");
+            Vector2 levelPosition1 = new Vector2(0, Shared.graphics.PreferredBackBufferHeight - 1200);
+            Rectangle levelSourceRectangle = new Rectangle(0, 0, 2880, 1200);
+            level1 = new LevelBackground(game, 
                 spriteBatch, 
                 levelTexture,
                 levelSourceRectangle, 
@@ -144,14 +146,24 @@ namespace AMCCFinalProject
             boss = new Boss(Game, spriteBatch, boss1Texture, new Vector2(800, 400), initialDelay, bossVersion);
 
             regularFont = game.Content.Load<SpriteFont>("fonts/regularFont");
-            string statusMenuScore = "Player Health" + player1.Health + " Current Score " + Shared.currentScore;
-            statusMenu = new StatusMenu(game, spriteBatch, regularFont, Vector2.Zero, statusMenuScore, Color.Black);
+            string status = player1.Health + "\n\n" + player1.AttackStrength;
+            statusMenu = new StatusMenu(game, spriteBatch, regularFont, new Vector2(60, 20), status, Color.White);
             this.Components.Add(statusMenu);
+
+            string score = "Score: " + Shared.currentScore + "High Score: " + Shared.hiScore;
+            scoreMenu = new StatusMenu(game, spriteBatch, regularFont, scorePosition, score, Color.White);
+            this.Components.Add(scoreMenu);
+
+            Texture2D iconTexture = game.Content.Load<Texture2D>("ui/menuIcons");
+            MenuIcons menuIcons = new MenuIcons(game, spriteBatch, iconTexture, Vector2.Zero);
+            this.Components.Add(menuIcons);
 
             SoundEffect punch = game.Content.Load<SoundEffect>("soundeffects/punch");
             SoundEffect playerHit = game.Content.Load<SoundEffect>("soundeffects/playerhit");
             SoundEffect playerDead = game.Content.Load<SoundEffect>("soundeffects/meow");
             SoundEffect itemPickup = game.Content.Load<SoundEffect>("soundeffects/powerup");
+
+            Shared.bossTheme = game.Content.Load<Song>("music/boss");
 
             collisionManager = new CollisionManager(game, player1, enemies, healthItems, strengthItems, punch, playerHit,
                 playerDead, itemPickup, boss);
@@ -172,8 +184,16 @@ namespace AMCCFinalProject
             {
                 Shared.hiScore = Shared.currentScore;
             }
-            string statusMenuScore = "Player Health: " + player1.Health + " Current Score: " + Shared.currentScore + " HiScore: " + Shared.hiScore + " Current Level: " + Shared.level;
-            statusMenu.Message = statusMenuScore;
+            string status = player1.Health + "\n\n" + player1.AttackStrength;
+            statusMenu.Message = status;
+
+            string score = "Score: " + Shared.currentScore + " High Score: " + Shared.hiScore + "\n" + "Level: " + Shared.level;
+            Vector2 scoreDimension = regularFont.MeasureString(score);
+            scorePosition = new Vector2(GraphicsDevice.Viewport.Width - scoreDimension.X, 0);
+            scoreMenu.Position = scorePosition;
+            scoreMenu.Message = score;
+
+
 
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -272,6 +292,9 @@ namespace AMCCFinalProject
                     {
                         this.Components.Add(boss);
                         bossActivated = true;
+                        MediaPlayer.Stop();
+                        MediaPlayer.IsRepeating = true;
+                        MediaPlayer.Play(Shared.bossTheme);
                     }
                 }
             }
@@ -310,8 +333,18 @@ namespace AMCCFinalProject
             boss.Defeated = true;
             if (!boss.ScoreAdded)
             {
-                Shared.currentScore += boss.ScoreValue;
-                boss.ScoreAdded = true;
+                if (Shared.currentScore < 999999)
+                {
+                    Shared.currentScore += boss.ScoreValue;
+                        boss.ScoreAdded = true;
+                    }
+                else
+                {
+                    Shared.currentScore = 999999;
+                    Shared.hiScore = 999999;
+                }
+
+                
             }
         }
         else
@@ -374,8 +407,16 @@ namespace AMCCFinalProject
                 enemy.Movement = Enemy.Direction.Stop;
                 if (!enemy.ScoreAdded)
                 {
-                    Shared.currentScore += enemy.ScoreValue;
-                    enemy.ScoreAdded = true;
+                    if (Shared.currentScore < 999999)
+                    {
+                        Shared.currentScore += enemy.ScoreValue;
+                        enemy.ScoreAdded = true;
+                    }
+                    else
+                    {
+                        Shared.currentScore = 999999;
+                        Shared.hiScore = 999999;
+                    }
                 }
             }
             else
@@ -423,31 +464,125 @@ namespace AMCCFinalProject
             }
         }
 
+        public void reduceSpeed()
+        {
+            level1.ScrollSpeed = new Vector2(1, 0);
+
+            if (boss.Health <= 0)
+            {
+                boss.Speed = 40;
+            }
+            else
+            {
+                boss.Speed = 1;
+            }
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Speed = 1;
+            }
+
+            for (int i = 0; i < healthItems.Count; i++)
+            {
+                healthItems[i].Speed = new Vector2(1, 0);
+            }
+
+            for (int i = 0; i < strengthItems.Count; i++)
+            {
+                strengthItems[i].Speed = new Vector2(1, 0);
+            }
+        }
+
+        public void increaseSpeed()
+        {
+            level1.ScrollSpeed = new Vector2(3, 0);
+
+            if (boss.Health <= 0)
+            {
+                boss.Speed = 40;
+            }
+            else
+            {
+                boss.Speed = 3;
+            }
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Speed = 3;
+            }
+
+            for (int i = 0; i < healthItems.Count; i++)
+            {
+                healthItems[i].Speed = new Vector2(3, 0);
+            }
+
+            for (int i = 0; i < strengthItems.Count; i++)
+            {
+                strengthItems[i].Speed = new Vector2(3, 0);
+            }
+        }
+
+        public void idleSpeed()
+        {
+            level1.ScrollSpeed = new Vector2(2, 0);
+
+            if (boss.Health <= 0)
+            {
+                boss.Speed = 40;
+            }
+            else
+            {
+                boss.Speed = 2;
+            }
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Speed = 2;
+            }
+
+            for (int i = 0; i < healthItems.Count; i++)
+            {
+                healthItems[i].Speed = new Vector2(2, 0);
+            }
+
+            for (int i = 0; i < strengthItems.Count; i++)
+            {
+                strengthItems[i].Speed = new Vector2(2, 0);
+            }
+        }
+
         public void playerDirection(KeyboardState keyboardState)
         {
             if (keyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyDown(Keys.Up))
             {
                 player1.Movement = Player.Direction.NorthWest;
+                reduceSpeed();         
             }
             else if (keyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyDown(Keys.Down))
             {
                 player1.Movement = Player.Direction.SouthWest;
+                reduceSpeed();
             }
             else if (keyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyDown(Keys.Up))
             {
                 player1.Movement = Player.Direction.NorthEast;
+                increaseSpeed();
             }
             else if (keyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyDown(Keys.Down))
             {
                 player1.Movement = Player.Direction.SouthEast;
+                increaseSpeed();
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 player1.Movement = Player.Direction.East;
+                increaseSpeed();
             }
             else if (keyboardState.IsKeyDown(Keys.Left))
             {
                 player1.Movement = Player.Direction.West;
+                reduceSpeed();
+
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
@@ -460,6 +595,7 @@ namespace AMCCFinalProject
             else
             {
                 player1.Movement = Player.Direction.Idle;
+                idleSpeed();
             }
         }
         public void playerAction(KeyboardState keyboardState)

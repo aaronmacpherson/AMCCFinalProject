@@ -7,6 +7,8 @@
  *      Cynthia Cheng:      2016.12.06: Coded
  *      Aaron MacPherson:   2016.12.07: Coded
  *      Cynthia Cheng:      2016.12.07: Coded
+ *      Aaron MacPherson:   2016.12.08: Coded
+ *      Aaron MacPherson:   2016.12.09: Coded
  */
 
 using System;
@@ -69,9 +71,9 @@ namespace AMCCFinalProject
             List<Rectangle> enemiesRectangle = new List<Rectangle>();
 
             //upper wall
-            if (player1.Position.Y < 325)
+            if (player1.Position.Y < 295)
             {
-                player1.Position = new Vector2(player1.Position.X, 325);
+                player1.Position = new Vector2(player1.Position.X, 295);
             }
             //left wall
             if (player1.Position.X < 0)
@@ -105,18 +107,27 @@ namespace AMCCFinalProject
             {
                 if (player1Rectangle.Intersects(healthItemRectangles[i]) && healthItems[i].Enabled)
                 {
-                    if (player1.Health >= 500)
+                    if (player1.Health >= 100)
                     {
-                        player1.Health = 500;
+                        itemPickup.Play();
+                        player1.Health = 100;
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
 
                     }
-                    if (player1.Health < 500)
+                    if (player1.Health < 100)
                     {
+                        itemPickup.Play();
                         healthItems[i].Enabled = false;
                         healthItems[i].Visible = false;
-                        player1.Health += 20;
+                        if (player1.Health > 70)
+                        {
+                            player1.Health = 100;
+                        }
+                        else
+                        {
+                            player1.Health += 30;
+                        }
                     }
                 }
                 else
@@ -129,10 +140,24 @@ namespace AMCCFinalProject
             {
                 if (player1Rectangle.Intersects(strengthItemRectangles[i]) && strengthItems[i].Enabled)
                 {
-                    itemPickup.Play();
-                    player1.AttackStrength += 2;
-                    strengthItems[i].Enabled = false;
-                    strengthItems[i].Visible = false;
+                    if (player1.AttackStrength >= 10)
+                    {
+                        itemPickup.Play();
+                        player1.AttackStrength = 10;
+                        strengthItems[i].Enabled = false;
+                        strengthItems[i].Visible = false;
+                    }
+                    if (player1.AttackStrength < 10)
+                    {
+                        itemPickup.Play();
+                        player1.AttackStrength += 2;
+                        strengthItems[i].Enabled = false;
+                        strengthItems[i].Visible = false;
+                    }
+                }
+                else
+                {
+                    player1.AttackStrength = player1.AttackStrength;
                 }
             }
 
@@ -152,7 +177,7 @@ namespace AMCCFinalProject
                         enemies[enemyCounter].Health -= player1.AttackStrength;
                     }
 
-                    if (enemies[enemyCounter].State == Enemy.EnemyState.Attack && enemies[enemyCounter].FrameIndex >= enemies[enemyCounter].CurrentFrames.Count - 2)
+                    if (enemies[enemyCounter].State == Enemy.EnemyState.Attack && enemies[enemyCounter].FrameIndex == enemies[enemyCounter].CurrentFrames.Count - 2)
                     {
                         if (player1.Health > 0)
                         {
@@ -195,6 +220,7 @@ namespace AMCCFinalProject
             {
                 if (player1.State == Player.CharacterState.Uppercut && player1.FrameIndex >= player1.CurrentFrames.Count - 1)
                 {
+                    punch.Play();
                     boss.Health -= player1.AttackStrength;
                 }
 

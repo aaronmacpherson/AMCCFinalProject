@@ -192,9 +192,9 @@ namespace AMCCFinalProject
             this.delay = delay;
 
             score = 0;
-            health = 500;
+            health = 100;
             dimension = new Vector2(64, 64);
-            attackStrength = 5;
+            attackStrength = 2;
 
             this.Enabled = true;
             this.Visible = true;
@@ -375,13 +375,14 @@ namespace AMCCFinalProject
                     frameIndex = 0;
                     currentFrames = deathFrames;
                 }
+                else if (frameIndex == currentFrames.Count - 1)
+                {
+                    frameIndex = currentFrames.Count - 1;
+                    Enabled = false;
+                }
             }
 
-            if (state == CharacterState.Death && frameIndex == currentFrames.Count - 1)
-            {
-                frameIndex = currentFrames.Count - 1;
-                Enabled = false;
-            }
+
         }
 
         public void playerMovementUpdate()
@@ -438,7 +439,7 @@ namespace AMCCFinalProject
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)position.X, (int)position.Y, (int)dimension.X, (int)dimension.Y);
+            return new Rectangle((int)position.X+20, (int)position.Y+35, 15, 30);
         }
     }
 }

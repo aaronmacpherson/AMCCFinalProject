@@ -203,6 +203,19 @@ namespace AMCCFinalProject
             }
         }
 
+        public int Speed
+        {
+            get
+            {
+                return speed;
+            }
+
+            set
+            {
+                speed = value;
+            }
+        }
+
         public Enemy(Game game,
             SpriteBatch spriteBatch,
             Texture2D texture,
@@ -217,7 +230,6 @@ namespace AMCCFinalProject
 
             dimension = new Vector2(64, 64);
             active = true;
-            health = 50;
 
             this.Enabled = true;
             this.Visible = true;
@@ -229,8 +241,10 @@ namespace AMCCFinalProject
         {
             if (enemyVersion == 1)
             {
+
+                health = 10;
                 speed = 2;
-                attackStrength = 10;
+                attackStrength = 2;
                 scoreValue = 100;
                 eastMoveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)
@@ -280,8 +294,10 @@ namespace AMCCFinalProject
             }
             else if (enemyVersion == 2)
             {
+
+                health = 40;
                 speed = 1;
-                attackStrength = 15;
+                attackStrength = 3;
                 scoreValue = 150;
                 eastMoveFrames = new List<Rectangle>();
                 for (int i = 0; i < 4; i++)
@@ -331,8 +347,10 @@ namespace AMCCFinalProject
             }
             else if (enemyVersion == 3)
             {
+
+                health = 20;
                 speed = 3;
-                attackStrength = 5;
+                attackStrength = 1;
                 scoreValue = 200;
                 eastMoveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)

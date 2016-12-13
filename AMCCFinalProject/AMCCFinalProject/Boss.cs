@@ -242,7 +242,7 @@ namespace AMCCFinalProject
 
             dimension = new Vector2(102, 95);
             active = true;
-            health = 100 + (Shared.level * 100);
+            health = 50 + (Shared.level * 20);
 
             this.Enabled = true;
             this.Visible = true;
@@ -255,7 +255,7 @@ namespace AMCCFinalProject
             if (bossVersion == 1)
             {
                 speed = 2;
-                attackStrength = 10;
+                attackStrength = 2;
                 scoreValue = 1000;
                 eastMoveFrames = new List<Rectangle>();
                 for (int i = 0; i < 5; i++)

@@ -25,6 +25,19 @@ namespace AMCCFinalProject
         Vector2 position;
         Vector2 speed;
 
+        public Vector2 Speed
+        {
+            get
+            {
+                return speed;
+            }
+
+            set
+            {
+                speed = value;
+            }
+        }
+
         public StrengthItem(Game game, SpriteBatch spriteBatch, Texture2D itemTexture, Vector2 position, Vector2 speed) : base(game)
         {
             this.spriteBatch = spriteBatch;

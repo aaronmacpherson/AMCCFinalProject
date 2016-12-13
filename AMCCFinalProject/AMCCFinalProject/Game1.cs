@@ -1,9 +1,11 @@
 ﻿/* Game1.cs
  * Final Project
  * Revision History
- *      Cynthia Cheng:    2016.12.01: Created & Coded
- *      Aaron MacPherson: 2016.12.07: Coded
- *      Cynthia Cheng:    2016.12.07: Coded
+ *      Cynthia Cheng:      2016.12.01: Created & Coded
+ *      Aaron MacPherson:   2016.12.07: Coded
+ *      Cynthia Cheng:      2016.12.07: Coded
+ *      Aaron MacPherson:   2016.12.08: Coded
+ *      Aaron MacPherson:   2016.12.09: Coded
  *      
  */
 
@@ -32,6 +34,7 @@ namespace AMCCFinalProject
         private Song menuSong;
         private Song actionSong;
         private KeyboardState oldState;
+        private Song bossTheme;
 
         public Game1()
         {
@@ -91,7 +94,7 @@ namespace AMCCFinalProject
 
             menuSong = this.Content.Load<Song>("music/menu");
             actionSong = this.Content.Load<Song>("music/level1");
-
+            bossTheme = this.Content.Load<Song>("music/boss");
 
             HideAllScenes();
             MediaPlayer.IsRepeating = true;
@@ -185,6 +188,7 @@ namespace AMCCFinalProject
 
             if (gameOverScene.Enabled)
             {
+                MediaPlayer.Stop();
                 Shared.level = 1;
                 Shared.currentScore = 0;
                 Shared.gameOver = false;
@@ -205,6 +209,8 @@ namespace AMCCFinalProject
                 if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
                 {
                     HideAllScenes();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(actionSong);
                     actionScene.Show();
                 }
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
@@ -223,6 +229,7 @@ namespace AMCCFinalProject
 
             if (levelManagerScene.Enabled)
             {
+                MediaPlayer.Stop();
                 Shared.gameOver = false;
                 Shared.nextLevel = false;
                 actionScene.Dispose();
@@ -235,6 +242,8 @@ namespace AMCCFinalProject
                     Shared.level++;
                     oldState = ks;
                     HideAllScenes();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(actionSong);
                     actionScene.Show();
                 }
                 if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
@@ -243,6 +252,8 @@ namespace AMCCFinalProject
                     Shared.currentScore = 0;
                     oldState = ks;
                     HideAllScenes();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(menuSong);
                     startScene.Show();
                 }
                 if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
@@ -250,6 +261,8 @@ namespace AMCCFinalProject
                     Shared.level = 1;
                     Shared.currentScore = 0;
                     HideAllScenes();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(actionSong);
                     actionScene.Show();
                 }
                 if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
@@ -258,14 +271,24 @@ namespace AMCCFinalProject
                 }
             }
 
-            if (actionScene.Enabled || helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled)
+            if (helpScene.Enabled || howToPlayScene.Enabled || aboutScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {
                     HideAllScenes();
+                    Shared.gameOver = false;
+                    startScene.Show();
+                }
+            }
+
+            if (actionScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
                     MediaPlayer.Stop();
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Play(menuSong);
+                    HideAllScenes();
                     Shared.gameOver = false;
                     startScene.Show();
                 }

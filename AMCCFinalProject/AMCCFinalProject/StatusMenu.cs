@@ -30,6 +30,19 @@ namespace AMCCFinalProject
             }
         }
 
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+
         public StatusMenu(Game game, 
             SpriteBatch spriteBatch,
             SpriteFont regularFont,

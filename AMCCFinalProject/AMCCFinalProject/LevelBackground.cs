@@ -26,6 +26,19 @@ namespace AMCCFinalProject
         private Vector2 scrollSpeed;
         private Vector2 position1, position2;
 
+        public Vector2 ScrollSpeed
+        {
+            get
+            {
+                return scrollSpeed;
+            }
+
+            set
+            {
+                scrollSpeed = value;
+            }
+        }
+
         public LevelBackground(Game game, SpriteBatch spriteBatch,
             Texture2D levelTexture, Rectangle sourceRectangle,
             Vector2 position, Vector2 scrollSpeed) : base(game)
@@ -50,7 +63,7 @@ namespace AMCCFinalProject
             position1 -= scrollSpeed;
             if (position1.X < -sourceRectangle.Width)
             {
-                position1.X = position2.X + levelTexture.Width-2;
+                position1.X = position2.X + levelTexture.Width - 3;
             }
 
             position2 -= scrollSpeed;
